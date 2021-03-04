@@ -34,29 +34,53 @@ var BouncingPenguin = /*#__PURE__*/function () {
       width: canvas.width,
       height: canvas.height
     };
-    this.x = this.dimensions.width / 4;
-    this.y = this.dimensions.height / 5;
-    this.vel = 0;
+    this.registerEvents();
+    this.restart();
   }
 
   _createClass(BouncingPenguin, [{
-    key: "animate",
-    value: function animate() {
-      this.movePenguin();
-      this.drawPenguin(ctx);
+    key: "play",
+    value: function play() {
+      this.running = true;
+      this.animate();
     }
   }, {
-    key: "movePenguin",
-    value: function movePenguin() {}
+    key: "restart",
+    value: function restart() {
+      this.running = false;
+      this.score = 0;
+      this.penguin = new _penguin__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
+      this.level = new _level__WEBPACK_IMPORTED_MODULE_1__.default(this.dimensions);
+      this.animate();
+    }
   }, {
-    key: "drawPenguin",
-    value: function drawPenguin(ctx) {
-      var penguin_left = new Image();
-      var penguin_right = new Image();
-      penguin_left.src = 'assets/penguin_1.png';
-      penguin_right.src = 'assets/penguin_2.png';
-      ctx.drawImage(penguin_left, this.x * 2, this.y * 4, this.width, this.height);
-      ctx.drawImage(penguin_right, this.x * 3, this.y, this.width, this.height);
+    key: "registerEvents",
+    value: function registerEvents() {
+      this.boundClickHandler = this.click.bind(this);
+      this.ctx.canvas.addEventListener('mousedown', this.boundClickHandler);
+    }
+  }, {
+    key: "click",
+    value: function click(e) {
+      if (!this.running) {
+        this.play();
+      }
+    }
+  }, {
+    key: "animate",
+    value: function animate() {
+      this.level.animate(this.ctx);
+      this.penguin.animate(this.ctx);
+      this.drawScore();
+    }
+  }, {
+    key: "drawScore",
+    value: function drawScore() {
+      var location = {
+        x: this.dimensions.width / 2,
+        y: this.dimensions.height / 5
+      };
+      this.ctx.fillText(this.score, location.x, location.y);
     }
   }]);
 
@@ -92,10 +116,16 @@ var Level = /*#__PURE__*/function () {
   }
 
   _createClass(Level, [{
+    key: "animate",
+    value: function animate(ctx) {
+      this.drawBackground(ctx);
+    }
+  }, {
     key: "drawBackground",
     value: function drawBackground(ctx) {
-      ctx.fillStyle = "skyblue";
-      ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+      var background = new Image();
+      background.src = 'src/assets/sea_background.jpg';
+      ctx.drawImage(background, 0, 0, this.dimensions.width / 2, this.dimensions.height);
     }
   }]);
 
@@ -118,18 +148,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 var CONSTANTS = {
   PENGUIN_HEIGHT: 40
 };
 
-var Penguin = function Penguin(dimensions) {
-  _classCallCheck(this, Penguin);
+var Penguin = /*#__PURE__*/function () {
+  function Penguin(dimensions) {
+    _classCallCheck(this, Penguin);
 
-  this.dimensions.dimensions;
-  this.x = this.dimensions.width / 3;
-  this.y = this.dimensions.height / 2;
-  this.vel = 0;
-};
+    this.dimensions = dimensions;
+    this.x = this.dimensions.width / 4;
+    this.y = this.dimensions.height / 5;
+    this.vel = 0;
+  }
+
+  _createClass(Penguin, [{
+    key: "animate",
+    value: function animate(ctx) {
+      this.movePenguin();
+      this.drawPenguin(ctx);
+    }
+  }, {
+    key: "movePenguin",
+    value: function movePenguin() {
+      this.x += this.vel;
+      this.y -= this.height; //need to finish
+    }
+  }, {
+    key: "drawPenguin",
+    value: function drawPenguin(ctx) {
+      var penguin_left = new Image();
+      var penguin_right = new Image();
+      penguin_left.src = 'src/assets/penguin_1.png';
+      penguin_right.src = 'src/assets/penguin_2.png';
+      ctx.drawImage(penguin_left, this.x * 2, this.y * 4, this.width, this.height);
+      ctx.drawImage(penguin_right, this.x * 3, this.y, this.width, this.height);
+    }
+  }]);
+
+  return Penguin;
+}();
 
 
 
@@ -154,7 +216,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\ncanvas {\n    display: flex;\n    justify-content: center;\n    background: skyblue;\n}\n\n", "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":";;AAEA;IACI,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB","sourcesContent":["\n\ncanvas {\n    display: flex;\n    justify-content: center;\n    background: skyblue;\n}\n\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n/* canvas {\n    display: flex;\n    justify-content: center;\n    background: skyblue;\n} */\n\n", "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":";;AAEA;;;;GAIG","sourcesContent":["\n\n/* canvas {\n    display: flex;\n    justify-content: center;\n    background: skyblue;\n} */\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -661,7 +723,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
 
- //check to see if it's connected
+ // // check to see if it's connected
 // alert('connected!')
 
 var canvas = document.getElementById('penguin-game');

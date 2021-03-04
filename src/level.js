@@ -4,9 +4,15 @@ export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
     }
+    
+    animate(ctx){
+        this.drawBackground(ctx);
+    }
 
     drawBackground(ctx) {
-        ctx.fillStyle = "skyblue";
-        ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+        const background = new Image();
+        background.src = 'src/assets/sea_background.jpg';
+        ctx.drawImage(background, 0, 0, this.dimensions.width/2, this.dimensions.height)
     }
+
 }
