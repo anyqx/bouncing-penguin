@@ -12,16 +12,123 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BouncingPenguin)
 /* harmony export */ });
+/* harmony import */ var _penguin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./penguin */ "./src/penguin.js");
+/* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level */ "./src/level.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var BouncingPenguin = function BouncingPenguin(canvas) {
-  _classCallCheck(this, BouncingPenguin);
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  this.ctx = canvas.getContext("2d");
-  this.dimensions = {
-    width: canvas.width,
-    height: canvas.height
-  };
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//main class, logic, create the other classes, tell the other 
+//classes when to render
+
+
+
+var BouncingPenguin = /*#__PURE__*/function () {
+  function BouncingPenguin(canvas) {
+    _classCallCheck(this, BouncingPenguin);
+
+    this.ctx = canvas.getContext("2d");
+    this.dimensions = {
+      width: canvas.width,
+      height: canvas.height
+    };
+    this.x = this.dimensions.width / 4;
+    this.y = this.dimensions.height / 5;
+    this.vel = 0;
+  }
+
+  _createClass(BouncingPenguin, [{
+    key: "animate",
+    value: function animate() {
+      this.movePenguin();
+      this.drawPenguin(ctx);
+    }
+  }, {
+    key: "movePenguin",
+    value: function movePenguin() {}
+  }, {
+    key: "drawPenguin",
+    value: function drawPenguin(ctx) {
+      var penguin_left = new Image();
+      var penguin_right = new Image();
+      penguin_left.src = 'assets/penguin_1.png';
+      penguin_right.src = 'assets/penguin_2.png';
+      ctx.drawImage(penguin_left, this.x * 2, this.y * 4, this.width, this.height);
+      ctx.drawImage(penguin_right, this.x * 3, this.y, this.width, this.height);
+    }
+  }]);
+
+  return BouncingPenguin;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/level.js":
+/*!**********************!*\
+  !*** ./src/level.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Level)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//draw background and moving penguin food and letters(if time allows)
+var Level = /*#__PURE__*/function () {
+  function Level(dimensions) {
+    _classCallCheck(this, Level);
+
+    this.dimensions = dimensions;
+  }
+
+  _createClass(Level, [{
+    key: "drawBackground",
+    value: function drawBackground(ctx) {
+      ctx.fillStyle = "skyblue";
+      ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    }
+  }]);
+
+  return Level;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/penguin.js":
+/*!************************!*\
+  !*** ./src/penguin.js ***!
+  \************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Penguin)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CONSTANTS = {
+  PENGUIN_HEIGHT: 40
+};
+
+var Penguin = function Penguin(dimensions) {
+  _classCallCheck(this, Penguin);
+
+  this.dimensions.dimensions;
+  this.x = this.dimensions.width / 3;
+  this.y = this.dimensions.height / 2;
+  this.vel = 0;
 };
 
 
@@ -47,7 +154,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n    background: green;\n}", "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;IACI,iBAAiB;AACrB","sourcesContent":["body {\n    background: green;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\ncanvas {\n    display: flex;\n    justify-content: center;\n    background: skyblue;\n}\n\n", "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":";;AAEA;IACI,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB","sourcesContent":["\n\ncanvas {\n    display: flex;\n    justify-content: center;\n    background: skyblue;\n}\n\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -554,8 +661,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
 
+ //check to see if it's connected
+// alert('connected!')
 
-alert('connected!');
 var canvas = document.getElementById('penguin-game');
 new _game__WEBPACK_IMPORTED_MODULE_0__.default(canvas);
 })();
