@@ -10,9 +10,11 @@ export default class Level {
     }
 
     drawBackground(ctx) {
-        const background = new Image();
-        background.src = 'src/assets/sea_background.jpg';
-        ctx.drawImage(background, 0, 0, this.dimensions.width/2, this.dimensions.height)
+        const gameboard = new Image();
+        gameboard.src = 'src/assets/sea_background.jpg';
+        // gameboard.onload = () => ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height)
+        ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height)
+        
     }
 
 }

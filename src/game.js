@@ -7,20 +7,24 @@ export default class BouncingPenguin {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
-        this.registerEvents();
+        this.eventsHandler();
         this.restart();
     }
 
+    eventsHandler() {
+        window.addEventListener
+    }
+
     play(){
-        this.running = true;
+        // this.running = false;
         this.animate();
     }
 
     restart() {
-        this.running = false;
+        // this.running = true;
         this.score = 0;
-        this.penguin = new Penguin(this.dimensions);
         this.level = new Level(this.dimensions);
+        this.penguin = new Penguin(this.dimensions);
 
         this.animate();
     }
@@ -31,9 +35,9 @@ export default class BouncingPenguin {
     }
 
     click(e) {
-        if(!this.running) {
+        // if(!this.running) {
             this.play();
-        }
+        // }
     }
 
     animate() {
@@ -41,6 +45,7 @@ export default class BouncingPenguin {
         this.penguin.animate(this.ctx);
 
         this.drawScore();
+        requestAnimationFrame(this.animate.bind(this))
     }
 
     drawScore() {
