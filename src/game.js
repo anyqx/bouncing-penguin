@@ -12,16 +12,28 @@ export default class BouncingPenguin {
     }
 
     eventsHandler() {
-        window.addEventListener
+        this.spaceBarHandler = this.spaceDown.bind(this);
+        window.addEventListener('keydown',(e) => {
+            if (e.code === 'Space') {
+                this.spaceBarHandler();
+            }
+        })
+    }
+
+    spaceDown() {
+        if (!this.running) {
+            this.play();
+        }
+        this.penguin.speedUp();
     }
 
     play(){
-        // this.running = false;
+        this.running = false;
         this.animate();
     }
 
     restart() {
-        // this.running = true;
+        this.running = true;
         this.score = 0;
         this.level = new Level(this.dimensions);
         this.penguin = new Penguin(this.dimensions);
@@ -29,10 +41,6 @@ export default class BouncingPenguin {
         this.animate();
     }
 
-    registerEvents() {
-        this.boundClickHandler = this.click.bind(this);
-        this.ctx.canvas.addEventListener('mousedown', this.boundClickHandler)
-    }
 
     click(e) {
         // if(!this.running) {

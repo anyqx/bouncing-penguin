@@ -7,7 +7,7 @@ export default class Penguin {
         this.dimensions = dimensions;
         this.x = this.dimensions.width / 4;
         this.y = this.dimensions.height / 5;
-        this.velocity = 0;
+        this.velocity = 1;
     }
 
     animate(ctx) {
@@ -18,7 +18,14 @@ export default class Penguin {
     movePenguin() {
         this.x += this.velocity;
         this.y -= this.height;
-        //need to finish
+        this.height = 0;
+    }
+
+    speedUp() {
+        this.velocity += 0.5
+    }
+    jump() {
+        this.height = 5;
     }
 
     drawPenguin(ctx){

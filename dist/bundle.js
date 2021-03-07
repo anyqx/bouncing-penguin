@@ -30,25 +30,33 @@ class BouncingPenguin {
   }
 
   eventsHandler() {
-    window.addEventListener;
+    this.spaceBarHandler = this.spaceDown.bind(this);
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        this.spaceBarHandler();
+      }
+    });
+  }
+
+  spaceDown() {
+    if (!this.running) {
+      this.play();
+    }
+
+    this.penguin.speedUp();
   }
 
   play() {
-    // this.running = false;
+    this.running = false;
     this.animate();
   }
 
   restart() {
-    // this.running = true;
+    this.running = true;
     this.score = 0;
     this.level = new _level__WEBPACK_IMPORTED_MODULE_1__.default(this.dimensions);
     this.penguin = new _penguin__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
     this.animate();
-  }
-
-  registerEvents() {
-    this.boundClickHandler = this.click.bind(this);
-    this.ctx.canvas.addEventListener('mousedown', this.boundClickHandler);
   }
 
   click(e) {
@@ -126,7 +134,7 @@ class Penguin {
     this.dimensions = dimensions;
     this.x = this.dimensions.width / 4;
     this.y = this.dimensions.height / 5;
-    this.velocity = 0;
+    this.velocity = 1;
   }
 
   animate(ctx) {
@@ -136,7 +144,16 @@ class Penguin {
 
   movePenguin() {
     this.x += this.velocity;
-    this.y -= this.height; //need to finish
+    this.y -= this.height;
+    this.height = 0;
+  }
+
+  speedUp() {
+    this.velocity += 0.5;
+  }
+
+  jump() {
+    this.height = 5;
   }
 
   drawPenguin(ctx) {
