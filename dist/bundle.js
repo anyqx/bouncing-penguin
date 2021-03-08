@@ -168,14 +168,6 @@ class Penguin {
 
 
 
-/* canvas {
-    display: flex;
-    justify-content: center;
-    background: skyblue;
-} */
-
-
-
 /***/ })
 
 /******/ 	});
