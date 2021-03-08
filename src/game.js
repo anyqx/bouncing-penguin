@@ -24,7 +24,7 @@ export default class BouncingPenguin {
         if (!this.running) {
             this.play();
         }
-        this.penguin.speedUp();
+        this.penguin.jump();
     }
 
     play(){
@@ -35,17 +35,11 @@ export default class BouncingPenguin {
     restart() {
         this.running = true;
         this.score = 0;
+
         this.level = new Level(this.dimensions);
         this.penguin = new Penguin(this.dimensions);
 
         this.animate();
-    }
-
-
-    click(e) {
-        // if(!this.running) {
-            this.play();
-        // }
     }
 
     animate() {
@@ -57,7 +51,8 @@ export default class BouncingPenguin {
     }
 
     drawScore() {
-        const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
-        this.ctx.fillText(this.score, location.x, location.y);
+        // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
+        // this.ctx.fillText(this.score, location.x, location.y); 
+        this.ctx.fillText(this.score, 250, 30)
     }
 }

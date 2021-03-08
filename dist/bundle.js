@@ -43,7 +43,7 @@ class BouncingPenguin {
       this.play();
     }
 
-    this.penguin.speedUp();
+    this.penguin.jump();
   }
 
   play() {
@@ -59,11 +59,6 @@ class BouncingPenguin {
     this.animate();
   }
 
-  click(e) {
-    // if(!this.running) {
-    this.play(); // }
-  }
-
   animate() {
     this.level.animate(this.ctx);
     this.penguin.animate(this.ctx);
@@ -72,11 +67,9 @@ class BouncingPenguin {
   }
 
   drawScore() {
-    const location = {
-      x: this.dimensions.width / 2,
-      y: this.dimensions.height / 5
-    };
-    this.ctx.fillText(this.score, location.x, location.y);
+    // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
+    // this.ctx.fillText(this.score, location.x, location.y); 
+    this.ctx.fillText(this.score, 250, 30);
   }
 
 }
@@ -133,7 +126,7 @@ class Penguin {
   constructor(dimensions) {
     this.dimensions = dimensions;
     this.x = this.dimensions.width / 4;
-    this.y = this.dimensions.height / 5;
+    this.y = this.dimensions.height;
     this.velocity = 1;
   }
 
@@ -148,10 +141,6 @@ class Penguin {
     this.height = 0;
   }
 
-  speedUp() {
-    this.velocity += 0.5;
-  }
-
   jump() {
     this.height = 5;
   }
@@ -159,10 +148,12 @@ class Penguin {
   drawPenguin(ctx) {
     const penguin_left = new Image();
     const penguin_right = new Image();
+    debugger;
     penguin_left.src = 'src/assets/penguin_2.png';
-    penguin_right.src = 'src/assets/penguin_1.png';
-    ctx.drawImage(penguin_left, 100, 0, 100, 100);
-    ctx.drawImage(penguin_right, 400, 0, 100, 100);
+    penguin_right.src = 'src/assets/penguin_1.png'; // ctx.drawImage(penguin_left, 50, 30, 100, 100)
+
+    ctx.drawImage(penguin_left, this.x / 2, 30, 100, 100);
+    ctx.drawImage(penguin_right, 370, 300, 120, 120);
   }
 
 }
