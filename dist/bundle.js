@@ -142,7 +142,7 @@ class Penguin {
   }
 
   jump() {
-    this.height = 5;
+    this.width = 5;
   }
 
   drawPenguin(ctx) {

@@ -5,7 +5,7 @@ const CONSTANTS = {
 export default class Penguin {
     constructor(dimensions) {
         this.dimensions = dimensions;
-        this.x = this.dimensions.width / 4;
+        this.x = this.dimensions.width/4;
         this.y = this.dimensions.height;
         this.velocity = 1;
     }
@@ -22,7 +22,7 @@ export default class Penguin {
     }
 
     jump() {
-        this.height = 5;
+        this.width = 5;
     }
 
     drawPenguin(ctx){
