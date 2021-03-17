@@ -125,23 +125,29 @@ const CONSTANTS = {
 class Penguin {
   constructor(dimensions) {
     this.dimensions = dimensions;
-    this.x = this.dimensions.width / 4;
-    this.y = this.dimensions.height;
-    this.velocity = 3;
+    this.x1 = this.dimensions.width / 3; //left top penguin
+
+    this.y1 = this.dimensions.height / 4;
+    this.x2 = this.dimensions.width / 3 * 2; // right bottom penguin
+
+    this.y2 = this.dimensions.height / 4 * 3;
+    this.velocity = 2;
   }
 
   animate(ctx) {
-    this.movePenguin();
     this.drawPenguin(ctx);
+    this.movePenguin();
   }
 
   movePenguin() {
-    this.x += this.velocity;
-    this.y -= this.height;
-    this.height = 0;
+    // this.x += this.velocity;
+    // debugger
+    this.y1 += this.velocity;
+    this.y2 -= this.velocity; // this.y1 = this.y2;
+    // this.width = 0;
   }
 
-  jump() {
+  stop() {
     this.width = 5;
   }
 
@@ -149,10 +155,10 @@ class Penguin {
     const penguin_left = new Image();
     const penguin_right = new Image();
     penguin_left.src = 'src/assets/penguin_2.png';
-    penguin_right.src = 'src/assets/penguin_1.png'; // ctx.drawImage(penguin_left, 50, 30, 100, 100)
+    penguin_right.src = 'src/assets/penguin_1.png';
+    ctx.drawImage(penguin_left, this.x1, this.y1, 100, 100); //position, size
 
-    ctx.drawImage(penguin_left, this.x / 2, 30, 100, 100);
-    ctx.drawImage(penguin_right, 370, 300, 120, 120);
+    ctx.drawImage(penguin_right, this.x2, this.y2, 120, 120);
   }
 
 }
