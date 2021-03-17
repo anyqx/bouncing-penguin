@@ -7,7 +7,7 @@ export default class Penguin {
         this.dimensions = dimensions;
         this.x = this.dimensions.width/4;
         this.y = this.dimensions.height;
-        this.velocity = 1;
+        this.velocity = 3;
     }
 
     animate(ctx) {
@@ -28,7 +28,6 @@ export default class Penguin {
     drawPenguin(ctx){
         const penguin_left = new Image();
         const penguin_right = new Image();
-        debugger
         penguin_left.src = 'src/assets/penguin_2.png'; 
         penguin_right.src = 'src/assets/penguin_1.png';
         // ctx.drawImage(penguin_left, 50, 30, 100, 100)

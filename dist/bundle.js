@@ -69,7 +69,7 @@ class BouncingPenguin {
   drawScore() {
     // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
     // this.ctx.fillText(this.score, location.x, location.y); 
-    this.ctx.fillText(this.score, 250, 30);
+    this.ctx.fillText(`SCORE: ${this.score}`, 250, 30);
   }
 
 }
@@ -127,7 +127,7 @@ class Penguin {
     this.dimensions = dimensions;
     this.x = this.dimensions.width / 4;
     this.y = this.dimensions.height;
-    this.velocity = 1;
+    this.velocity = 3;
   }
 
   animate(ctx) {
@@ -148,7 +148,6 @@ class Penguin {
   drawPenguin(ctx) {
     const penguin_left = new Image();
     const penguin_right = new Image();
-    debugger;
     penguin_left.src = 'src/assets/penguin_2.png';
     penguin_right.src = 'src/assets/penguin_1.png'; // ctx.drawImage(penguin_left, 50, 30, 100, 100)
 

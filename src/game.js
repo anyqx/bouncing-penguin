@@ -53,6 +53,6 @@ export default class BouncingPenguin {
     drawScore() {
         // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
         // this.ctx.fillText(this.score, location.x, location.y); 
-        this.ctx.fillText(this.score, 250, 30)
+        this.ctx.fillText(`SCORE: ${this.score}`, 250, 30);
     }
 }
