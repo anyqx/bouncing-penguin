@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/game.js":
@@ -7,7 +8,6 @@
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BouncingPenguin)
@@ -27,6 +27,8 @@ class BouncingPenguin {
     };
     this.eventsHandler();
     this.restart();
+    this.score = 0;
+    this.frame = 0;
   }
 
   eventsHandler() {
@@ -43,7 +45,7 @@ class BouncingPenguin {
       this.play();
     }
 
-    this.penguin.jump();
+    this.penguin.move();
   }
 
   play() {
@@ -69,7 +71,7 @@ class BouncingPenguin {
   drawScore() {
     // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
     // this.ctx.fillText(this.score, location.x, location.y); 
-    this.ctx.fillText(`SCORE: ${this.score}`, 250, 30);
+    this.ctx.fillText(`SCORE: ${this.score}`, this.dimensions.height / 2, this.dimensions.width / 10);
   }
 
 }
@@ -82,7 +84,6 @@ class BouncingPenguin {
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Level)
@@ -101,7 +102,7 @@ class Level {
     const gameboard = new Image();
     gameboard.src = 'src/assets/sea_background.jpg'; // gameboard.onload = () => ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height)
 
-    ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height);
+    ctx.drawImage(gameboard, 0, 0, this.dimensions.width, this.dimensions.height);
   }
 
 }
@@ -114,7 +115,6 @@ class Level {
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Penguin)
@@ -135,11 +135,11 @@ class Penguin {
   }
 
   animate(ctx) {
-    this.drawPenguin(ctx);
     this.movePenguin();
+    this.drawPenguin(ctx);
   }
 
-  movePenguin() {
+  move() {
     // this.x += this.velocity;
     // debugger
     this.y1 += this.velocity;
@@ -156,22 +156,12 @@ class Penguin {
     const penguin_right = new Image();
     penguin_left.src = 'src/assets/penguin_2.png';
     penguin_right.src = 'src/assets/penguin_1.png';
-    ctx.drawImage(penguin_left, this.x1, this.y1, 100, 100); //position, size
+    ctx.drawImage(penguin_left, this.x1, this.y1, 100, 100); //position, penguin size
 
-    ctx.drawImage(penguin_right, this.x2, this.y2, 120, 120);
+    ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110);
   }
 
 }
-
-/***/ }),
-
-/***/ "./src/styles/main.css":
-/*!*****************************!*\
-  !*** ./src/styles/main.css ***!
-  \*****************************/
-/***/ (() => {
-
-
 
 /***/ })
 
@@ -201,18 +191,6 @@ class Penguin {
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -243,17 +221,13 @@ class Penguin {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
-/* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
-/* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_main_css__WEBPACK_IMPORTED_MODULE_1__);
-
  // // check to see if it's connected
 // alert('connected!')
 

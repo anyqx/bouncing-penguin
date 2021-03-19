@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 
 <head>
+    <!-- meta data -->
+    <meta property="og:title" content="Bouncing Penguin" />
+    <meta property="og:image" content="./src/assets/project_pic.png" />
+    <meta property="og:description"
+        content="Penguins bouncing up and down from the seasaw" /> 
+    <meta property="og:url" content="https://anyqx.github.io/bouncing-penguin/" />
+
+
     <title>Bouncing Penguin</title>
     <script type="text/javascript" src="dist/bundle.js" charset="utf-8" defer></script>
+    <link rel='stylesheet' href='src/styles/reset.css'>
     <link rel='stylesheet' href='src/styles/index.css'>
+
 </head>
 
 <body>
-    <h1 className='game-title'>Bouncing Penguin</h1>
-    <div className='instructions'>
-        <h2>Instructions</h2>
-        <p>Press Space Tab to have the Penguins jump up and down</p>
-        <p>Try to eat as much as food and letters as possible to PROTECT PENGUINS on our Mother Earth</p>
-    <div>
+    <div class='game-instruction'>
+        <h1>Welcome to</h1>
+        <h2>Bouncing Penguin</h2>
+        <div className='instructions'>
+            <h2>Instructions</h2>
+            <p>Press Space Tab to have the Penguins jump up and down</p>
+            <p>Try to eat as much as food and letters as possible to PROTECT PENGUINS on our Mother Earth</p>
+        </div>
+
+        <div>
+            <button>Start</button>
+        </div>
+    </div>
+
         <!-- <p id='scoreboard' >Score Board</p> -->
-    </div>    
-        <canvas id="penguin-game" height="550" width="500"></canvas>
+    <div className='canvas-container'>    
+        <canvas id="penguin-game" height="550" width="750"></canvas>
     </div>
 </body>
 

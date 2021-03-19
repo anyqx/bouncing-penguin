@@ -9,8 +9,10 @@ export default class BouncingPenguin {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.eventsHandler();
         this.restart();
+        this.score = 0;
+        this.frame = 0;
     }
-
+    
     eventsHandler() {
         this.spaceBarHandler = this.spaceDown.bind(this);
         window.addEventListener('keydown',(e) => {
@@ -19,12 +21,12 @@ export default class BouncingPenguin {
             }
         })
     }
-
+    
     spaceDown() {
         if (!this.running) {
             this.play();
         }
-        this.penguin.jump();
+        this.penguin.move();
     }
 
     play(){
@@ -53,6 +55,6 @@ export default class BouncingPenguin {
     drawScore() {
         // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
         // this.ctx.fillText(this.score, location.x, location.y); 
-        this.ctx.fillText(`SCORE: ${this.score}`, 250, 30);
+        this.ctx.fillText(`SCORE: ${this.score}`, this.dimensions.height/2, this.dimensions.width/10);
     }
 }

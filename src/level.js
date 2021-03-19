@@ -13,8 +13,6 @@ export default class Level {
         const gameboard = new Image();
         gameboard.src = 'src/assets/sea_background.jpg';
         // gameboard.onload = () => ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height)
-        ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height)
-        
+        ctx.drawImage(gameboard, 0, 0, this.dimensions.width, this.dimensions.height)
     }
-
 }
