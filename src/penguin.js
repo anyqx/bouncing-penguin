@@ -1,5 +1,6 @@
 const CONSTANTS = {
-    PENGUIN_HEIGHT: 40
+    PENGUIN_UPPER_HEIGHT: 40,
+    PENGUIN_LOWER_HEIGHT: 20,
 }
 
 export default class Penguin {
@@ -7,13 +8,13 @@ export default class Penguin {
         this.dimensions = dimensions;
         this.x1 = this.dimensions.width / 3; //left top penguin
         this.y1 = this.dimensions.height /4;
-        this.x2 = this.dimensions.width / 3 * 2; // right bottom penguin
+        this.x2 = this.dimensions.width / 3 * 2; //right bottom penguin
         this.y2 = this.dimensions.height /4 * 3;
         this.velocity = 2;
     }
 
     animate(ctx) {
-        this.movePenguin();
+        // this.movePenguin();
         this.drawPenguin(ctx);
     }
 
@@ -27,7 +28,7 @@ export default class Penguin {
     }
 
     stop() {
-        this.width = 5;
+        // this.width = 5;
     }
 
     drawPenguin(ctx){
@@ -38,5 +39,4 @@ export default class Penguin {
         ctx.drawImage(penguin_left,this.x1, this.y1, 100, 100) //position, penguin size
         ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110)
     }
-
 }

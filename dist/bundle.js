@@ -25,10 +25,10 @@ class BouncingPenguin {
       width: canvas.width,
       height: canvas.height
     };
+    this.frame = 0;
     this.eventsHandler();
     this.restart();
     this.score = 0;
-    this.frame = 0;
   }
 
   eventsHandler() {
@@ -49,13 +49,14 @@ class BouncingPenguin {
   }
 
   play() {
-    this.running = false;
+    this.running = true;
     this.animate();
   }
 
   restart() {
     this.running = true;
     this.score = 0;
+    this.frame = 0;
     this.level = new _level__WEBPACK_IMPORTED_MODULE_1__.default(this.dimensions);
     this.penguin = new _penguin__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
     this.animate();
@@ -120,7 +121,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Penguin)
 /* harmony export */ });
 const CONSTANTS = {
-  PENGUIN_HEIGHT: 40
+  PENGUIN_UPPER_HEIGHT: 40,
+  PENGUIN_LOWER_HEIGHT: 20
 };
 class Penguin {
   constructor(dimensions) {
@@ -128,14 +130,14 @@ class Penguin {
     this.x1 = this.dimensions.width / 3; //left top penguin
 
     this.y1 = this.dimensions.height / 4;
-    this.x2 = this.dimensions.width / 3 * 2; // right bottom penguin
+    this.x2 = this.dimensions.width / 3 * 2; //right bottom penguin
 
     this.y2 = this.dimensions.height / 4 * 3;
     this.velocity = 2;
   }
 
   animate(ctx) {
-    this.movePenguin();
+    // this.movePenguin();
     this.drawPenguin(ctx);
   }
 

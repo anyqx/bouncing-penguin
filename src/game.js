@@ -7,10 +7,10 @@ export default class BouncingPenguin {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
+        this.frame = 0;
         this.eventsHandler();
         this.restart();
         this.score = 0;
-        this.frame = 0;
     }
     
     eventsHandler() {
@@ -30,14 +30,14 @@ export default class BouncingPenguin {
     }
 
     play(){
-        this.running = false;
+        this.running = true;
         this.animate();
     }
 
     restart() {
         this.running = true;
         this.score = 0;
-
+        this.frame = 0;
         this.level = new Level(this.dimensions);
         this.penguin = new Penguin(this.dimensions);
 
