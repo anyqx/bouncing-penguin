@@ -36,7 +36,8 @@ export default class Penguin {
         const penguin_right = new Image();
         penguin_left.src = 'src/assets/penguin_2.png'; 
         penguin_right.src = 'src/assets/penguin_1.png';
-        ctx.drawImage(penguin_left,this.x1, this.y1, 100, 100) //position, penguin size
-        ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110)
+        ctx.drawImage(penguin_left,this.x1, this.y1, 100, 100); //position, penguin size
+        ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110);
+        
     }
 }
