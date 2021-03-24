@@ -14,21 +14,20 @@ export default class Penguin {
     }
 
     animate(ctx) {
-        // this.movePenguin();
+        if ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
+            this.move();
+        } 
         this.drawPenguin(ctx);
-    }
+    }   
 
     move() {
-        // this.x += this.velocity;
-        // debugger
-        this.y1 += this.velocity;
-        this.y2 -= this.velocity;
-        // this.y1 = this.y2;
-        // this.width = 0;
-    }
-
-    stop() {
-        // this.width = 5;
+        if (this.y1 > this.y2) {
+            this.y1 -= this.velocity;
+            this.y2 += this.velocity;
+        } else {
+            this.y1 += this.velocity;
+            this.y2 -= this.velocity;
+        }
     }
 
     drawPenguin(ctx){
@@ -38,6 +37,5 @@ export default class Penguin {
         penguin_right.src = 'src/assets/penguin_1.png';
         ctx.drawImage(penguin_left,this.x1, this.y1, 100, 100); //position, penguin size
         ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110);
-        
     }
 }

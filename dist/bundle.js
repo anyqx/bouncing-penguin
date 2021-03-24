@@ -41,20 +41,19 @@ class BouncingPenguin {
   }
 
   spaceDown() {
-    if (!this.running) {
-      this.play();
-    }
-
-    this.penguin.move();
+    // if (!this.running) {
+    //     this.play();
+    // }
+    this.animatePenguin();
   }
 
   play() {
-    this.running = true;
-    this.animate();
+    // this.running = true;
+    this.penguin.drawPenguin();
   }
 
   restart() {
-    this.running = true;
+    // this.running = true;
     this.score = 0;
     this.frame = 0;
     this.level = new _level__WEBPACK_IMPORTED_MODULE_1__.default(this.dimensions);
@@ -137,20 +136,21 @@ class Penguin {
   }
 
   animate(ctx) {
-    // this.movePenguin();
+    if (this.y1 < this.dimensions.height / 4 || this.y1 < this.dimensions.height / 4 * 3) {
+      this.move();
+    }
+
     this.drawPenguin(ctx);
   }
 
   move() {
-    // this.x += this.velocity;
-    // debugger
-    this.y1 += this.velocity;
-    this.y2 -= this.velocity; // this.y1 = this.y2;
-    // this.width = 0;
-  }
-
-  stop() {
-    this.width = 5;
+    if (this.y1 > this.y2) {
+      this.y1 -= this.velocity;
+      this.y2 += this.velocity;
+    } else {
+      this.y1 += this.velocity;
+      this.y2 -= this.velocity;
+    }
   }
 
   drawPenguin(ctx) {

@@ -23,19 +23,19 @@ export default class BouncingPenguin {
     }
     
     spaceDown() {
-        if (!this.running) {
-            this.play();
-        }
-        this.penguin.move();
+        // if (!this.running) {
+        //     this.play();
+        // }
+        this.animatePenguin();
     }
 
     play(){
-        this.running = true;
-        this.animate();
+        // this.running = true;
+        this.penguin.drawPenguin();
     }
 
     restart() {
-        this.running = true;
+        // this.running = true;
         this.score = 0;
         this.frame = 0;
         this.level = new Level(this.dimensions);
