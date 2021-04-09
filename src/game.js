@@ -37,7 +37,7 @@ export default class BouncingPenguin {
     restart() {
         // this.running = true;
         this.score = 0;
-        this.frame = 0;
+        // this.frame = 0;
         this.level = new Level(this.dimensions);
         this.penguin = new Penguin(this.dimensions);
 
