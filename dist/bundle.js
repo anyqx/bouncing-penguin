@@ -26,8 +26,8 @@ class BouncingPenguin {
       height: canvas.height
     };
     this.frame = 0;
-    this.eventsHandler();
-    this.restart();
+    this.eventsHandler(); // this.restart();
+
     this.score = 0;
   }
 
@@ -41,10 +41,12 @@ class BouncingPenguin {
   }
 
   spaceDown() {
-    // if (!this.running) {
-    //     this.play();
-    // }
-    this.animatePenguin();
+    if (!this.running) {
+      this.restart();
+    }
+
+    this.penguin.hasJumped = false;
+    this.penguin.animate(this.ctx);
   }
 
   play() {
@@ -53,9 +55,9 @@ class BouncingPenguin {
   }
 
   restart() {
-    // this.running = true;
-    this.score = 0;
-    this.frame = 0;
+    this.running = true;
+    this.score = 0; // this.frame = 0;
+
     this.level = new _level__WEBPACK_IMPORTED_MODULE_1__.default(this.dimensions);
     this.penguin = new _penguin__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
     this.animate();
@@ -133,21 +135,36 @@ class Penguin {
 
     this.y2 = this.dimensions.height / 4 * 3;
     this.velocity = 2;
+    this.isAtBottom = false;
+    this.hasJumped = false;
   }
 
   animate(ctx) {
-    if (this.y1 < this.dimensions.height / 4 || this.y1 < this.dimensions.height / 4 * 3) {
+    if (this.hasJumped === false) {
       this.move();
-    }
+    } // ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
+    //     this.move();
+    // } 
+
 
     this.drawPenguin(ctx);
   }
 
   move() {
-    if (this.y1 > this.y2) {
+    if (this.isAtBottom) {
+      if (this.y1 < 139) {
+        this.hasJumped = true;
+        this.isAtBottom = false;
+      }
+
       this.y1 -= this.velocity;
       this.y2 += this.velocity;
     } else {
+      if (this.y1 > 409) {
+        this.isAtBottom = true;
+      }
+
+      console.log('y1:' + this.y1, 'y2:' + this.y2, 'velocity' + this.velocity);
       this.y1 += this.velocity;
       this.y2 -= this.velocity;
     }

@@ -9,7 +9,7 @@ export default class BouncingPenguin {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.frame = 0;
         this.eventsHandler();
-        this.restart();
+        // this.restart();
         this.score = 0;
     }
     
@@ -23,10 +23,11 @@ export default class BouncingPenguin {
     }
     
     spaceDown() {
-        // if (!this.running) {
-        //     this.play();
-        // }
-        this.animatePenguin();
+        if (!this.running) {
+            this.restart();
+        }
+        this.penguin.hasJumped = false;
+        this.penguin.animate(this.ctx);
     }
 
     play(){
@@ -35,7 +36,7 @@ export default class BouncingPenguin {
     }
 
     restart() {
-        // this.running = true;
+        this.running = true;
         this.score = 0;
         // this.frame = 0;
         this.level = new Level(this.dimensions);
