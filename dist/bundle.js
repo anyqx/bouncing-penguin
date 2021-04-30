@@ -2,6 +2,143 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/food.js":
+/*!*********************!*\
+  !*** ./src/food.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Fish1": () => (/* binding */ Fish1),
+/* harmony export */   "Fish2": () => (/* binding */ Fish2),
+/* harmony export */   "Fish3": () => (/* binding */ Fish3),
+/* harmony export */   "Shrimp": () => (/* binding */ Shrimp),
+/* harmony export */   "Squid": () => (/* binding */ Squid)
+/* harmony export */ });
+class Food {
+  // fish1, fish2, fish3, shrimp, squid
+  constructor(dimensions) {
+    this.dimensions = dimensions;
+    this.x = this.dimensions.width;
+    this.y = this.dimensions.height;
+  }
+
+  move() {
+    this.x -= this.velocity;
+  }
+
+}
+
+class Fish1 extends Food {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 130;
+    this.width = 130;
+    this.velocity = 5;
+  }
+
+  drawFish1(ctx) {
+    const fish1 = new Image();
+    fish1.src = 'src/fish1.png';
+    ctx.drawImage(fish1, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawFish1(ctx);
+  }
+
+}
+
+class Fish2 extends Food {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 130;
+    this.width = 130;
+    this.velocity = 5;
+  }
+
+  drawFish2(ctx) {
+    const fish2 = new Image();
+    fish2.src = 'src/fish2.png';
+    ctx.drawImage(fish2, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawFish2(ctx);
+  }
+
+}
+
+class Fish3 extends Food {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 130;
+    this.width = 130;
+    this.velocity = 5;
+  }
+
+  drawFish3(ctx) {
+    const fish3 = new Image();
+    fish3.src = 'src/fish3.png';
+    ctx.drawImage(fish3, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawFish3(ctx);
+  }
+
+}
+
+class Shrimp extends Food {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 130;
+    this.width = 130;
+    this.velocity = 5;
+  }
+
+  drawShrimp(ctx) {
+    const shrimp = new Image();
+    shrimp.src = 'src/shrimp.png';
+    ctx.drawImage(shrimp, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawShrimp(ctx);
+  }
+
+}
+
+class Squid extends Food {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 130;
+    this.width = 130;
+    this.velocity = 5;
+  }
+
+  drawSquid(ctx) {
+    const squid = new Image();
+    squid.src = 'src/squid.png';
+    ctx.drawImage(squid, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawSquid(ctx);
+  }
+
+}
+
+
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -14,8 +151,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _penguin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./penguin */ "./src/penguin.js");
 /* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level */ "./src/level.js");
+/* harmony import */ var _obstacles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./obstacles */ "./src/obstacles.js");
+/* harmony import */ var _food__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./food */ "./src/food.js");
 //main class, logic, create the other classes, tell the other 
 //classes when to render
+
+
 
 
 class BouncingPenguin {
@@ -108,6 +249,76 @@ class Level {
   }
 
 }
+
+/***/ }),
+
+/***/ "./src/obstacles.js":
+/*!**************************!*\
+  !*** ./src/obstacles.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Plastic": () => (/* binding */ Plastic),
+/* harmony export */   "Pop": () => (/* binding */ Pop)
+/* harmony export */ });
+class Obstacles {
+  constructor(dimensions) {
+    this.dimensions = dimensions;
+    this.x = this.dimensions.width;
+    this.y = this.dimensions.height;
+  }
+
+  move() {
+    this.x -= this.velocity;
+  }
+
+}
+
+class Plastic extends Obstacles {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 100;
+    this.width = 110;
+    this.velocity = Math.floor(Math.random() * 3) + 1;
+  }
+
+  drawPlastic(ctx) {
+    const plastic = new Image();
+    plastic.src = 'src/plastic_bag.png';
+    ctx.drawImage(plastic, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawPlastic(ctx);
+  }
+
+}
+
+class Pop extends Obstacles {
+  constructor(dimensions) {
+    super(dimensions);
+    this.height = 130;
+    this.width = 130;
+    this.velocity = 5;
+  }
+
+  drawPop(ctx) {
+    const pop = new Image();
+    pop.src = 'src/pop.png';
+    ctx.drawImage(pop, this.x, this.y - 150, this.width, this.height);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawPop(ctx);
+  }
+
+}
+
+
 
 /***/ }),
 

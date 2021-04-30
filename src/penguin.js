@@ -34,7 +34,7 @@ export default class Penguin {
             }
             this.y1 -= this.velocity;
             this.y2 += this.velocity;
-            
+             
         } else {
             if (this.y1 > 409) {
                 this.isAtBottom =true;

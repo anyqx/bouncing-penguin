@@ -2,6 +2,8 @@
 //classes when to render
 import Penguin from './penguin';
 import Level from './level';
+import { Plastic, Pop } from './obstacles';
+import { Fish1, Fish2, Fish3, Shrimp, Squid } from './food'
 
 export default class BouncingPenguin {
     constructor(canvas) {
@@ -29,7 +31,7 @@ export default class BouncingPenguin {
         this.penguin.hasJumped = false;
         this.penguin.animate(this.ctx);
     }
-
+ 
     play(){
         // this.running = true;
         this.penguin.drawPenguin();
