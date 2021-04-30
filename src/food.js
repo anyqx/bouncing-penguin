@@ -77,8 +77,8 @@ class Fish3 extends Food {
 class Shrimp extends Food {
     constructor(dimensions) {
         super(dimensions)
-        this.height = 130;
-        this.width = 130;
+        this.height = 100;
+        this.width = 100;
         this.velocity = 5;
     }
 
@@ -98,8 +98,8 @@ class Shrimp extends Food {
 class Squid extends Food {
     constructor(dimensions) {
         super(dimensions)
-        this.height = 130;
-        this.width = 130;
+        this.height = 100;
+        this.width = 100;
         this.velocity = 5;
     }
 
