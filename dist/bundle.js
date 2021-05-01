@@ -347,7 +347,7 @@ class Penguin {
     this.y2 = this.dimensions.height / 4 * 3;
     this.velocity = 2;
     this.isAtBottom = false;
-    this.hasJumped = false;
+    this.hasJumped = true;
   }
 
   animate(ctx) {
