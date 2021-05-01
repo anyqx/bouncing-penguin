@@ -1,5 +1,4 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/food.js":
@@ -8,6 +7,7 @@
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Fish1": () => (/* binding */ Fish1),
@@ -145,6 +145,7 @@ class Squid extends Food {
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BouncingPenguin)
@@ -227,6 +228,7 @@ class BouncingPenguin {
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Level)
@@ -258,6 +260,7 @@ class Level {
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Plastic": () => (/* binding */ Plastic),
@@ -326,72 +329,9 @@ class Pop extends Obstacles {
 /*!************************!*\
   !*** ./src/penguin.js ***!
   \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Penguin)
-/* harmony export */ });
-const CONSTANTS = {
-  PENGUIN_UPPER_HEIGHT: 40,
-  PENGUIN_LOWER_HEIGHT: 20
-};
-class Penguin {
-  constructor(dimensions) {
-    this.dimensions = dimensions;
-    this.x1 = this.dimensions.width / 3; //left top penguin
-
-    this.y1 = this.dimensions.height / 4;
-    this.x2 = this.dimensions.width / 3 * 2; //right bottom penguin
-
-    this.y2 = this.dimensions.height / 4 * 3;
-    this.velocity = 2;
-    this.isAtBottom = false;
-    this.hasJumped = true;
-  }
-
-  animate(ctx) {
-    if (this.hasJumped === false) {
-      this.move();
-    } // ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
-    //     this.move();
-    // } 
-
-
-    this.drawPenguin(ctx);
-  }
-
-  move() {
-    if (this.isAtBottom) {
-      if (this.y1 < 139) {
-        this.hasJumped = true;
-        this.isAtBottom = false;
-      }
-
-      this.y1 -= this.velocity;
-      this.y2 += this.velocity;
-    } else {
-      if (this.y1 > 409) {
-        this.isAtBottom = true;
-      }
-
-      console.log('y1:' + this.y1, 'y2:' + this.y2, 'velocity' + this.velocity);
-      this.y1 += this.velocity;
-      this.y2 -= this.velocity;
-    }
-  }
-
-  drawPenguin(ctx) {
-    const penguin_left = new Image();
-    const penguin_right = new Image();
-    penguin_left.src = 'src/assets/penguin_2.png';
-    penguin_right.src = 'src/assets/penguin_1.png';
-    ctx.drawImage(penguin_left, this.x1, this.y1, 100, 100); //position, penguin size
-
-    ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110);
-  }
-
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/annieyxu/Desktop/bouncing-penguin/src/penguin.js: Unexpected token (50:6)\n\n\u001b[0m \u001b[90m 48 |\u001b[39m   \u001b[0m\n\u001b[0m \u001b[90m 49 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m \u001b[36mclass\u001b[39m \u001b[33mPenguinLeft\u001b[39m \u001b[36mextends\u001b[39m \u001b[33mPenguin\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 51 |\u001b[39m     constructor(dimensions) {\u001b[0m\n\u001b[0m \u001b[90m 52 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdimensions \u001b[33m=\u001b[39m dimensions\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 53 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mx \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdimensions\u001b[33m.\u001b[39mwidth \u001b[35m/ 3; /\u001b[39m\u001b[33m/\u001b[39mleft top penguin\u001b[0m\n    at Parser._raise (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:776:17)\n    at Parser.raiseWithData (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:769:17)\n    at Parser.raise (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:737:17)\n    at Parser.unexpected (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:9668:16)\n    at Parser.parseClassMemberWithIsStatic (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:13145:12)\n    at Parser.parseClassMember (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:13038:10)\n    at /Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12983:14\n    at Parser.withTopicForbiddingContext (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12002:14)\n    at Parser.parseClassBody (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12960:10)\n    at Parser.parseClass (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12933:22)");
 
 /***/ })
 
@@ -451,8 +391,9 @@ class Penguin {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/

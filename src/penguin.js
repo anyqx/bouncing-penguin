@@ -1,18 +1,18 @@
+import { defaultCipherList } from "node:constants";
+
 const CONSTANTS = {
     PENGUIN_UPPER_HEIGHT: 40,
     PENGUIN_LOWER_HEIGHT: 20,
 }
 
-export default class Penguin {
+class Penguin {
     constructor(dimensions) {
         this.dimensions = dimensions;
-        this.x1 = this.dimensions.width / 3; //left top penguin
-        this.y1 = this.dimensions.height /4;
-        this.x2 = this.dimensions.width / 3 * 2; //right bottom penguin
-        this.y2 = this.dimensions.height /4 * 3;
+        this.x = this.dimensions.width;
+        this.y = this.dimensions.height;
         this.velocity = 2;
         this.isAtBottom = false;
-        this.hasJumped = true;
+        this.hasJumped = false
     }
 
     animate(ctx) {
@@ -44,13 +44,38 @@ export default class Penguin {
             this.y2 -= this.velocity;
         }
     }
+}
 
-    drawPenguin(ctx){
-        const penguin_left = new Image();
-        const penguin_right = new Image();
-        penguin_left.src = 'src/assets/penguin_2.png'; 
-        penguin_right.src = 'src/assets/penguin_1.png';
-        ctx.drawImage(penguin_left,this.x1, this.y1, 100, 100); //position, penguin size
-        ctx.drawImage(penguin_right, this.x2, this.y2, 130, 110);
+  
+
+class PenguinLeft extends Penguin {
+    constructor(dimensions) {
+        this.dimensions = dimensions;
+        this.x = this.dimensions.width / 3; //left top penguin
+        this.y = this.dimensions.height /4;
+    }
+
+      drawLeft(ctx){
+        const penguin = new Image();
+        penguin.src = 'src/assets/penguin_1.png';
+        ctx.drawImage(penguin,this.x, this.y, 100, 100); //position, penguin size
     }
 }
+
+
+class PenguinRight extends Penguin {
+    constructor(dimensions) {
+        this.dimensions = dimensions;
+        this.x = this.dimensions.width / 3 * 2; //right bottom penguin
+        this.y = this.dimensions.height /4 * 3;
+    }
+
+      drawRight(ctx){
+        const penguin = new Image();
+        penguin.src = 'src/assets/penguin_2.png'; 
+        ctx.drawImage(penguin, this.x, this.y, 130, 110);
+    }
+}
+}
+
+export {PenguinLeft, PenguinRight}; 
