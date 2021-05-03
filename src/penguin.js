@@ -1,5 +1,3 @@
-import { defaultCipherList } from "node:constants";
-
 const CONSTANTS = {
     PENGUIN_UPPER_HEIGHT: 40,
     PENGUIN_LOWER_HEIGHT: 20,
@@ -11,25 +9,25 @@ class Penguin {
         this.x = this.dimensions.width;
         this.y = this.dimensions.height;
         this.velocity = 2;
-        this.isAtBottom = false;
-        this.hasJumped = false
+        // this.isAtBottom = false;
+        // this.hasJumped = false;
     }
 
-    animate(ctx) {
-        if (this.hasJumped === false) {
-            this.move();
-        }
+    // animate(ctx) {
+    //     if (this.hasJumped === false) {
+    //         this.move();
+    //     }
         
-        // ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
-        //     this.move();
-        // } 
-        this.drawPenguin(ctx);
-    }   
+    //     // ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
+    //     //     this.move();
+    //     // } 
+    //     this.drawPenguin(ctx);
+    // }   
 
     move() {
         if (this.isAtBottom) {
             if (this.y1 < 139) {
-                this.hasJumped = true;
+                // this.hasJumped = true;
                 this.isAtBottom = false;
             }
             this.y1 -= this.velocity;
@@ -47,35 +45,47 @@ class Penguin {
 }
 
   
-
-class PenguinLeft extends Penguin {
+class Left extends Penguin {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.x = this.dimensions.width / 3; //left top penguin
         this.y = this.dimensions.height /4;
+        // this.hasJumped = false;
+        this.isAtBottom = false;
     }
 
-      drawLeft(ctx){
+    drawLeft(ctx){
         const penguin = new Image();
         penguin.src = 'src/assets/penguin_1.png';
         ctx.drawImage(penguin,this.x, this.y, 100, 100); //position, penguin size
     }
+
+    animate(ctx) {
+        this.move();
+        this.drawLeft(ctx);
+    }
 }
 
 
-class PenguinRight extends Penguin {
+class Right extends Penguin {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.x = this.dimensions.width / 3 * 2; //right bottom penguin
         this.y = this.dimensions.height /4 * 3;
+        this.isAtBottom = true;
     }
 
-      drawRight(ctx){
+    drawRight(ctx){
         const penguin = new Image();
         penguin.src = 'src/assets/penguin_2.png'; 
         ctx.drawImage(penguin, this.x, this.y, 130, 110);
     }
-}
+
+    animate(ctx) {
+        this.move();
+        this.drawRight(ctx);
+    }
 }
 
-export {PenguinLeft, PenguinRight}; 
+
+export {Left, Right}; 

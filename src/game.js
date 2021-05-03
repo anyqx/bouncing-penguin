@@ -1,7 +1,7 @@
 //main class, logic, create the other classes, tell the other 
 //classes when to render
-import Penguin from './penguin';
 import Level from './level';
+import { Left, Right } from './penguin';
 import { Plastic, Pop } from './obstacles';
 import { Fish1, Fish2, Fish3, Shrimp, Squid } from './food'
 
@@ -28,13 +28,15 @@ export default class BouncingPenguin {
         if (!this.running) {
             this.restart();
         }
-        this.penguin.hasJumped = false;
-        this.penguin.animate(this.ctx);
+        // this.penguin.hasJumped = false;
+        this.left.animate(this.ctx);
+        this.right.animate(this.ctx);
     }
  
     play(){
         // this.running = true;
-        this.penguin.drawPenguin();
+        this.left.drawLeft();
+        this.right.drawRight();
     }
 
     restart() {
@@ -42,14 +44,16 @@ export default class BouncingPenguin {
         this.score = 0;
         // this.frame = 0;
         this.level = new Level(this.dimensions);
-        this.penguin = new Penguin(this.dimensions);
+        this.left = new Left(this.dimensions);
+        this.right = new Right(this.dimensions);
 
-        this.animate();
+        // this.animate();
     }
 
     animate() {
         this.level.animate(this.ctx);
-        this.penguin.animate(this.ctx);
+        this.left.animate(this.ctx);
+        this.right.animate(this.ctx);
 
         this.drawScore();
         requestAnimationFrame(this.animate.bind(this))

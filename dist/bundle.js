@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/food.js":
@@ -7,7 +8,6 @@
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Fish1": () => (/* binding */ Fish1),
@@ -145,13 +145,12 @@ class Squid extends Food {
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ BouncingPenguin)
 /* harmony export */ });
-/* harmony import */ var _penguin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./penguin */ "./src/penguin.js");
-/* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./level */ "./src/level.js");
+/* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./level */ "./src/level.js");
+/* harmony import */ var _penguin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./penguin */ "./src/penguin.js");
 /* harmony import */ var _obstacles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./obstacles */ "./src/obstacles.js");
 /* harmony import */ var _food__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./food */ "./src/food.js");
 //main class, logic, create the other classes, tell the other 
@@ -185,29 +184,32 @@ class BouncingPenguin {
   spaceDown() {
     if (!this.running) {
       this.restart();
-    }
+    } // this.penguin.hasJumped = false;
 
-    this.penguin.hasJumped = false;
-    this.penguin.animate(this.ctx);
+
+    this.left.animate(this.ctx);
+    this.right.animate(this.ctx);
   }
 
   play() {
     // this.running = true;
-    this.penguin.drawPenguin();
+    this.left.drawLeft();
+    this.right.drawRight();
   }
 
   restart() {
     this.running = true;
     this.score = 0; // this.frame = 0;
 
-    this.level = new _level__WEBPACK_IMPORTED_MODULE_1__.default(this.dimensions);
-    this.penguin = new _penguin__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
-    this.animate();
+    this.level = new _level__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
+    this.left = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Left(this.dimensions);
+    this.right = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Right(this.dimensions); // this.animate();
   }
 
   animate() {
     this.level.animate(this.ctx);
-    this.penguin.animate(this.ctx);
+    this.left.animate(this.ctx);
+    this.right.animate(this.ctx);
     this.drawScore();
     requestAnimationFrame(this.animate.bind(this));
   }
@@ -228,7 +230,6 @@ class BouncingPenguin {
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Level)
@@ -260,7 +261,6 @@ class Level {
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Plastic": () => (/* binding */ Plastic),
@@ -329,9 +329,104 @@ class Pop extends Obstacles {
 /*!************************!*\
   !*** ./src/penguin.js ***!
   \************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/annieyxu/Desktop/bouncing-penguin/src/penguin.js: Unexpected token (50:6)\n\n\u001b[0m \u001b[90m 48 |\u001b[39m   \u001b[0m\n\u001b[0m \u001b[90m 49 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 50 |\u001b[39m \u001b[36mclass\u001b[39m \u001b[33mPenguinLeft\u001b[39m \u001b[36mextends\u001b[39m \u001b[33mPenguin\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 51 |\u001b[39m     constructor(dimensions) {\u001b[0m\n\u001b[0m \u001b[90m 52 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdimensions \u001b[33m=\u001b[39m dimensions\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 53 |\u001b[39m         \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mx \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdimensions\u001b[33m.\u001b[39mwidth \u001b[35m/ 3; /\u001b[39m\u001b[33m/\u001b[39mleft top penguin\u001b[0m\n    at Parser._raise (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:776:17)\n    at Parser.raiseWithData (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:769:17)\n    at Parser.raise (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:737:17)\n    at Parser.unexpected (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:9668:16)\n    at Parser.parseClassMemberWithIsStatic (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:13145:12)\n    at Parser.parseClassMember (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:13038:10)\n    at /Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12983:14\n    at Parser.withTopicForbiddingContext (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12002:14)\n    at Parser.parseClassBody (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12960:10)\n    at Parser.parseClass (/Users/annieyxu/Desktop/bouncing-penguin/node_modules/@babel/parser/lib/index.js:12933:22)");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Left": () => (/* binding */ Left),
+/* harmony export */   "Right": () => (/* binding */ Right)
+/* harmony export */ });
+const CONSTANTS = {
+  PENGUIN_UPPER_HEIGHT: 40,
+  PENGUIN_LOWER_HEIGHT: 20
+};
+
+class Penguin {
+  constructor(dimensions) {
+    this.dimensions = dimensions;
+    this.x = this.dimensions.width;
+    this.y = this.dimensions.height;
+    this.velocity = 2; // this.isAtBottom = false;
+    // this.hasJumped = false;
+  } // animate(ctx) {
+  //     if (this.hasJumped === false) {
+  //         this.move();
+  //     }
+  //     // ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
+  //     //     this.move();
+  //     // } 
+  //     this.drawPenguin(ctx);
+  // }   
+
+
+  move() {
+    if (this.isAtBottom) {
+      if (this.y1 < 139) {
+        // this.hasJumped = true;
+        this.isAtBottom = false;
+      }
+
+      this.y1 -= this.velocity;
+      this.y2 += this.velocity;
+    } else {
+      if (this.y1 > 409) {
+        this.isAtBottom = true;
+      }
+
+      console.log('y1:' + this.y1, 'y2:' + this.y2, 'velocity' + this.velocity);
+      this.y1 += this.velocity;
+      this.y2 -= this.velocity;
+    }
+  }
+
+}
+
+class Left extends Penguin {
+  constructor(dimensions) {
+    this.dimensions = dimensions;
+    this.x = this.dimensions.width / 3; //left top penguin
+
+    this.y = this.dimensions.height / 4; // this.hasJumped = false;
+
+    this.isAtBottom = false;
+  }
+
+  drawLeft(ctx) {
+    const penguin = new Image();
+    penguin.src = 'src/assets/penguin_1.png';
+    ctx.drawImage(penguin, this.x, this.y, 100, 100); //position, penguin size
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawLeft(ctx);
+  }
+
+}
+
+class Right extends Penguin {
+  constructor(dimensions) {
+    this.dimensions = dimensions;
+    this.x = this.dimensions.width / 3 * 2; //right bottom penguin
+
+    this.y = this.dimensions.height / 4 * 3;
+    this.isAtBottom = true;
+  }
+
+  drawRight(ctx) {
+    const penguin = new Image();
+    penguin.src = 'src/assets/penguin_2.png';
+    ctx.drawImage(penguin, this.x, this.y, 130, 110);
+  }
+
+  animate(ctx) {
+    this.move();
+    this.drawRight(ctx);
+  }
+
+}
+
+
 
 /***/ })
 
@@ -391,9 +486,8 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
