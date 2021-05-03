@@ -166,45 +166,31 @@ class BouncingPenguin {
       width: canvas.width,
       height: canvas.height
     }; // this.frame = 0;
+    // this.eventsHandler();
 
-    this.eventsHandler(); // this.restart();
-    // this.score = 0;
+    this.start(); // this.score = 0;
     // this.animate()
   }
 
-  eventsHandler() {
-    this.spaceBarHandler = this.spaceDown.bind(this);
-    window.addEventListener('keydown', e => {
-      if (e.code === 'Space') {
-        this.spaceBarHandler();
-      }
-    });
-  }
-
-  spaceDown() {
-    if (!this.running) {
-      this.restart();
-    } // this.penguin.hasJumped = false;
-
-
-    this.left.animate(this.ctx);
-    this.right.animate(this.ctx);
-  }
-
-  play() {
+  start() {
     // this.running = true;
-    this.left.drawLeft();
-    this.right.drawRight();
-  }
-
-  restart() {
-    this.running = true;
-    this.score = 0; // this.frame = 0;
-
+    // this.score = 0;
+    // this.frame = 0;
     this.level = new _level__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
     this.left = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Left(this.dimensions);
     this.right = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Right(this.dimensions);
     this.animate();
+  }
+
+  eventsHandler() {
+    // this.spaceBarHandler = this.spaceDown.bind(this);
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        // this.spaceBarHandler();
+        this.left.animate(this.ctx);
+        this.right.animate(this.ctx);
+      }
+    });
   }
 
   animate() {

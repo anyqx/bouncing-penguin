@@ -10,40 +10,16 @@ export default class BouncingPenguin {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
         // this.frame = 0;
-        this.eventsHandler();
+        // this.eventsHandler();
         
-        // this.restart();
+        this.start();
         // this.score = 0;
         // this.animate()
     }
     
-    eventsHandler() {
-        this.spaceBarHandler = this.spaceDown.bind(this);
-        window.addEventListener('keydown',(e) => {
-            if (e.code === 'Space') {
-                this.spaceBarHandler();
-            }
-        })
-    }
-    
-    spaceDown() {
-        if (!this.running) {
-            this.restart();
-        }
-        // this.penguin.hasJumped = false;
-        this.left.animate(this.ctx);
-        this.right.animate(this.ctx);
-    }
- 
-    play(){
+    start() {
         // this.running = true;
-        this.left.drawLeft();
-        this.right.drawRight();
-    }
-
-    restart() {
-        this.running = true;
-        this.score = 0;
+        // this.score = 0;
         // this.frame = 0;
         this.level = new Level(this.dimensions);
         this.left = new Left(this.dimensions);
@@ -51,6 +27,18 @@ export default class BouncingPenguin {
 
         this.animate();
     }
+
+    eventsHandler() {
+        // this.spaceBarHandler = this.spaceDown.bind(this);
+        window.addEventListener('keydown',(e) => {
+            if (e.code === 'Space') {
+                // this.spaceBarHandler();
+                this.left.animate(this.ctx)
+                this.right.animate(this.ctx)
+            }
+        })
+    }
+
 
     animate() {
         this.level.animate(this.ctx);
