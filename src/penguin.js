@@ -47,7 +47,7 @@ class Penguin {
   
 class Left extends Penguin {
     constructor(dimensions) {
-        this.dimensions = dimensions;
+        super(dimensions);
         this.x = this.dimensions.width / 3; //left top penguin
         this.y = this.dimensions.height /4;
         // this.hasJumped = false;
@@ -69,7 +69,7 @@ class Left extends Penguin {
 
 class Right extends Penguin {
     constructor(dimensions) {
-        this.dimensions = dimensions;
+        super(dimensions);
         this.x = this.dimensions.width / 3 * 2; //right bottom penguin
         this.y = this.dimensions.height /4 * 3;
         this.isAtBottom = true;

@@ -9,10 +9,12 @@ export default class BouncingPenguin {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
-        this.frame = 0;
+        // this.frame = 0;
         this.eventsHandler();
+        
         // this.restart();
-        this.score = 0;
+        // this.score = 0;
+        // this.animate()
     }
     
     eventsHandler() {
@@ -47,7 +49,7 @@ export default class BouncingPenguin {
         this.left = new Left(this.dimensions);
         this.right = new Right(this.dimensions);
 
-        // this.animate();
+        this.animate();
     }
 
     animate() {

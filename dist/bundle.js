@@ -165,11 +165,11 @@ class BouncingPenguin {
     this.dimensions = {
       width: canvas.width,
       height: canvas.height
-    };
-    this.frame = 0;
-    this.eventsHandler(); // this.restart();
+    }; // this.frame = 0;
 
-    this.score = 0;
+    this.eventsHandler(); // this.restart();
+    // this.score = 0;
+    // this.animate()
   }
 
   eventsHandler() {
@@ -203,7 +203,8 @@ class BouncingPenguin {
 
     this.level = new _level__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
     this.left = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Left(this.dimensions);
-    this.right = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Right(this.dimensions); // this.animate();
+    this.right = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Right(this.dimensions);
+    this.animate();
   }
 
   animate() {
@@ -383,7 +384,7 @@ class Penguin {
 
 class Left extends Penguin {
   constructor(dimensions) {
-    this.dimensions = dimensions;
+    super(dimensions);
     this.x = this.dimensions.width / 3; //left top penguin
 
     this.y = this.dimensions.height / 4; // this.hasJumped = false;
@@ -406,7 +407,7 @@ class Left extends Penguin {
 
 class Right extends Penguin {
   constructor(dimensions) {
-    this.dimensions = dimensions;
+    super(dimensions);
     this.x = this.dimensions.width / 3 * 2; //right bottom penguin
 
     this.y = this.dimensions.height / 4 * 3;
