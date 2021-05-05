@@ -39,7 +39,6 @@ export default class BouncingPenguin {
         })
     }
 
-
     animate() {
         this.level.animate(this.ctx);
         this.left.animate(this.ctx);
