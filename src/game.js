@@ -5,12 +5,12 @@ import { Left, Right } from './penguin';
 import { Plastic, Pop } from './obstacles';
 import { Fish1, Fish2, Fish3, Shrimp, Squid } from './food'
 
-export default class BouncingPenguin {
+export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
         // this.frame = 0;
-        // this.eventsHandler();
+        this.eventsHandler();
         
         this.start();
         // this.score = 0;

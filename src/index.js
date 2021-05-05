@@ -1,4 +1,5 @@
-import BouncingPenguin from './game';
+import Game from './game';
+import GameView from './game_view';
 
 // // check to see if it's connected
 // alert('connected!')

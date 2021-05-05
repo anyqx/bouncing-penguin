@@ -147,7 +147,7 @@ class Squid extends Food {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ BouncingPenguin)
+/* harmony export */   "default": () => (/* binding */ Game)
 /* harmony export */ });
 /* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./level */ "./src/level.js");
 /* harmony import */ var _penguin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./penguin */ "./src/penguin.js");
@@ -159,15 +159,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class BouncingPenguin {
+class Game {
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
     this.dimensions = {
       width: canvas.width,
       height: canvas.height
     }; // this.frame = 0;
-    // this.eventsHandler();
 
+    this.eventsHandler();
     this.start(); // this.score = 0;
     // this.animate()
   }
@@ -208,6 +208,28 @@ class BouncingPenguin {
   }
 
 }
+
+/***/ }),
+
+/***/ "./src/game_view.js":
+/*!**************************!*\
+  !*** ./src/game_view.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+class GameView {
+  constructor(game, ctx) {
+    this.ctx = ctx;
+    this.game = game; //
+  }
+
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GameView);
 
 /***/ }),
 
@@ -480,11 +502,13 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
+/* harmony import */ var _game_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game_view */ "./src/game_view.js");
+
  // // check to see if it's connected
 // alert('connected!')
 
 const canvas = document.getElementById('penguin-game');
-new _game__WEBPACK_IMPORTED_MODULE_0__.default(canvas);
+new BouncingPenguin(canvas);
 })();
 
 /******/ })()
