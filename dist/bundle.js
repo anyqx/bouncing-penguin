@@ -2,215 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/food.js":
-/*!*********************!*\
-  !*** ./src/food.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Fish1": () => (/* binding */ Fish1),
-/* harmony export */   "Fish2": () => (/* binding */ Fish2),
-/* harmony export */   "Fish3": () => (/* binding */ Fish3),
-/* harmony export */   "Shrimp": () => (/* binding */ Shrimp),
-/* harmony export */   "Squid": () => (/* binding */ Squid)
-/* harmony export */ });
-class Food {
-  // fish1, fish2, fish3, shrimp, squid
-  constructor(dimensions) {
-    this.dimensions = dimensions;
-    this.x = this.dimensions.width;
-    this.y = this.dimensions.height;
-  }
-
-  move() {
-    this.x -= this.velocity;
-  }
-
-}
-
-class Fish1 extends Food {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 130;
-    this.width = 130;
-    this.velocity = 5;
-  }
-
-  drawFish1(ctx) {
-    const fish1 = new Image();
-    fish1.src = 'src/fish1.png';
-    ctx.drawImage(fish1, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawFish1(ctx);
-  }
-
-}
-
-class Fish2 extends Food {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 130;
-    this.width = 130;
-    this.velocity = 5;
-  }
-
-  drawFish2(ctx) {
-    const fish2 = new Image();
-    fish2.src = 'src/fish2.png';
-    ctx.drawImage(fish2, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawFish2(ctx);
-  }
-
-}
-
-class Fish3 extends Food {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 130;
-    this.width = 130;
-    this.velocity = 5;
-  }
-
-  drawFish3(ctx) {
-    const fish3 = new Image();
-    fish3.src = 'src/fish3.png';
-    ctx.drawImage(fish3, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawFish3(ctx);
-  }
-
-}
-
-class Shrimp extends Food {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 100;
-    this.width = 100;
-    this.velocity = 5;
-  }
-
-  drawShrimp(ctx) {
-    const shrimp = new Image();
-    shrimp.src = 'src/shrimp.png';
-    ctx.drawImage(shrimp, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawShrimp(ctx);
-  }
-
-}
-
-class Squid extends Food {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 100;
-    this.width = 100;
-    this.velocity = 5;
-  }
-
-  drawSquid(ctx) {
-    const squid = new Image();
-    squid.src = 'src/squid.png';
-    ctx.drawImage(squid, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawSquid(ctx);
-  }
-
-}
-
-
-
-/***/ }),
-
-/***/ "./src/game.js":
-/*!*********************!*\
-  !*** ./src/game.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Game)
-/* harmony export */ });
-/* harmony import */ var _level__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./level */ "./src/level.js");
-/* harmony import */ var _penguin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./penguin */ "./src/penguin.js");
-/* harmony import */ var _obstacles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./obstacles */ "./src/obstacles.js");
-/* harmony import */ var _food__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./food */ "./src/food.js");
-//main class, logic, create the other classes, tell the other 
-//classes when to render
-
-
-
-
-class Game {
-  constructor(canvas) {
-    this.ctx = canvas.getContext("2d");
-    this.dimensions = {
-      width: canvas.width,
-      height: canvas.height
-    }; // this.frame = 0;
-
-    this.eventsHandler();
-    this.start(); // this.score = 0;
-    // this.animate()
-  }
-
-  start() {
-    // this.running = true;
-    // this.score = 0;
-    // this.frame = 0;
-    this.level = new _level__WEBPACK_IMPORTED_MODULE_0__.default(this.dimensions);
-    this.left = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Left(this.dimensions);
-    this.right = new _penguin__WEBPACK_IMPORTED_MODULE_1__.Right(this.dimensions);
-    this.animate();
-  }
-
-  eventsHandler() {
-    // this.spaceBarHandler = this.spaceDown.bind(this);
-    window.addEventListener('keydown', e => {
-      if (e.code === 'Space') {
-        // this.spaceBarHandler();
-        this.left.animate(this.ctx);
-        this.right.animate(this.ctx);
-      }
-    });
-  }
-
-  animate() {
-    this.level.animate(this.ctx);
-    this.left.animate(this.ctx);
-    this.right.animate(this.ctx);
-    this.drawScore();
-    requestAnimationFrame(this.animate.bind(this));
-  }
-
-  drawScore() {
-    // const location = {x: this.dimensions.width / 2, y: this.dimensions.height / 5}
-    // this.ctx.fillText(this.score, location.x, location.y); 
-    this.ctx.fillText(`SCORE: ${this.score}`, this.dimensions.height / 2, this.dimensions.width / 10);
-  }
-
-}
-
-/***/ }),
-
 /***/ "./src/game_view.js":
 /*!**************************!*\
   !*** ./src/game_view.js ***!
@@ -261,17 +52,17 @@ class GameView {
     const fireCrossbow = this.fireCrossbow.bind(this);
     const removeCrossbow = this.removeCrossbow.bind(this);
     const checkMiss = this.checkMiss.bind(this);
-    setTimeout(function () {
+    setTimeout(() => {
       generateObjects();
       fireCrossbow();
     }, 14 * 10);
-    setTimeout(function () {
+    setTimeout(() => {
       removeCrossbow();
     }, 16 * 10);
-    setTimeout(function () {
+    setTimeout(() => {
       finalPhase();
     }, 93 * 1000);
-    setTimeout(function () {
+    setTimeout(() => {
       checkMiss();
     }, 100 * 1000);
     requestAnimationFrame(this.animate.bind(this));
@@ -286,212 +77,6 @@ class GameView {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GameView);
-
-/***/ }),
-
-/***/ "./src/level.js":
-/*!**********************!*\
-  !*** ./src/level.js ***!
-  \**********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Level)
-/* harmony export */ });
-//draw background and moving penguin food and letters(if time allows)
-class Level {
-  constructor(dimensions) {
-    this.dimensions = dimensions;
-  }
-
-  animate(ctx) {
-    this.drawBackground(ctx);
-  }
-
-  drawBackground(ctx) {
-    const gameboard = new Image();
-    gameboard.src = 'src/assets/sea_background.jpg'; // gameboard.onload = () => ctx.drawImage(gameboard, 10, 10, this.dimensions.width, this.dimensions.height)
-
-    ctx.drawImage(gameboard, 0, 0, this.dimensions.width, this.dimensions.height);
-  }
-
-}
-
-/***/ }),
-
-/***/ "./src/obstacles.js":
-/*!**************************!*\
-  !*** ./src/obstacles.js ***!
-  \**************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Plastic": () => (/* binding */ Plastic),
-/* harmony export */   "Pop": () => (/* binding */ Pop)
-/* harmony export */ });
-class Obstacles {
-  constructor(dimensions) {
-    this.dimensions = dimensions;
-    this.x = this.dimensions.width;
-    this.y = this.dimensions.height;
-  }
-
-  move() {
-    this.x -= this.velocity;
-  }
-
-}
-
-class Plastic extends Obstacles {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 100;
-    this.width = 110;
-    this.velocity = Math.floor(Math.random() * 3) + 1;
-  }
-
-  drawPlastic(ctx) {
-    const plastic = new Image();
-    plastic.src = 'src/plastic_bag.png';
-    ctx.drawImage(plastic, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawPlastic(ctx);
-  }
-
-}
-
-class Pop extends Obstacles {
-  constructor(dimensions) {
-    super(dimensions);
-    this.height = 130;
-    this.width = 130;
-    this.velocity = 5;
-  }
-
-  drawPop(ctx) {
-    const pop = new Image();
-    pop.src = 'src/pop.png';
-    ctx.drawImage(pop, this.x, this.y - 150, this.width, this.height);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawPop(ctx);
-  }
-
-}
-
-
-
-/***/ }),
-
-/***/ "./src/penguin.js":
-/*!************************!*\
-  !*** ./src/penguin.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Left": () => (/* binding */ Left),
-/* harmony export */   "Right": () => (/* binding */ Right)
-/* harmony export */ });
-const CONSTANTS = {
-  PENGUIN_UPPER_HEIGHT: 40,
-  PENGUIN_LOWER_HEIGHT: 20
-};
-
-class Penguin {
-  constructor(dimensions) {
-    this.dimensions = dimensions;
-    this.x = this.dimensions.width;
-    this.y = this.dimensions.height;
-    this.velocity = 2; // this.isAtBottom = false;
-    // this.hasJumped = false;
-  } // animate(ctx) {
-  //     if (this.hasJumped === false) {
-  //         this.move();
-  //     }
-  //     // ((this.y1 < this.dimensions.height / 4) ||  (this.y1 < this.dimensions.height / 4 * 3)) {
-  //     //     this.move();
-  //     // } 
-  //     this.drawPenguin(ctx);
-  // }   
-
-
-  move() {
-    if (this.isAtBottom) {
-      if (this.y1 < 139) {
-        // this.hasJumped = true;
-        this.isAtBottom = false;
-      }
-
-      this.y1 -= this.velocity;
-      this.y2 += this.velocity;
-    } else {
-      if (this.y1 > 409) {
-        this.isAtBottom = true;
-      }
-
-      console.log('y1:' + this.y1, 'y2:' + this.y2, 'velocity' + this.velocity);
-      this.y1 += this.velocity;
-      this.y2 -= this.velocity;
-    }
-  }
-
-}
-
-class Left extends Penguin {
-  constructor(dimensions) {
-    super(dimensions);
-    this.x = this.dimensions.width / 3; //left top penguin
-
-    this.y = this.dimensions.height / 4; // this.hasJumped = false;
-
-    this.isAtBottom = false;
-  }
-
-  drawLeft(ctx) {
-    const penguin = new Image();
-    penguin.src = 'src/assets/penguin_1.png';
-    ctx.drawImage(penguin, this.x, this.y, 100, 100); //position, penguin size
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawLeft(ctx);
-  }
-
-}
-
-class Right extends Penguin {
-  constructor(dimensions) {
-    super(dimensions);
-    this.x = this.dimensions.width / 3 * 2; //right bottom penguin
-
-    this.y = this.dimensions.height / 4 * 3;
-    this.isAtBottom = true;
-  }
-
-  drawRight(ctx) {
-    const penguin = new Image();
-    penguin.src = 'src/assets/penguin_2.png';
-    ctx.drawImage(penguin, this.x, this.y, 130, 110);
-  }
-
-  animate(ctx) {
-    this.move();
-    this.drawRight(ctx);
-  }
-
-}
-
-
 
 /***/ })
 
@@ -557,14 +142,70 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
-/* harmony import */ var _game_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game_view */ "./src/game_view.js");
+/* harmony import */ var _game_view_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game_view.js */ "./src/game_view.js");
+// import Game from "./game.js";
 
- // // check to see if it's connected
-// alert('connected!')
-
-const canvas = document.getElementById('penguin-game');
-new BouncingPenguin(canvas);
+document.addEventListener("DOMContentLoaded", () => {
+  const gameCanvas = document.getElementsByClassName("game-canvas")[0];
+  gameCanvas.width = 1200;
+  gameCanvas.height = 700;
+  const ctx = gameCanvas.getContext("2d");
+  const scoreCanvas = document.getElementsByClassName("score-canvas")[0];
+  scoreCanvas.width = 75;
+  scoreCanvas.height = 700;
+  const scoreBar = scoreCanvas.getContext("2d"); //   const wto = new Audio("assets/audio/")
+  //   const directions = document.getElementById("directions-modal");
+  //   const directionsBtn = document.getElementById("directions-btn");
+  //   const close = document.getElementById("close-modal");
+  //   const mute = document.getElementById("mute-symbol");
+  //   directionsBtn.addEventListener("click", () => {
+  //     if (directions.style.display !== "block") {
+  //       directions.style.display = "block";
+  //     } else {
+  //       directions.style.display = "none";
+  //     }
+  //   });
+  //   close.addEventListener("click", () => {
+  //     directions.style.display = "none";
+  //   });
+  //   document.getElementById("audio-btn").addEventListener("click", () => {
+  //     if (wto.muted) {
+  //       wto.muted = false;
+  //       mute.innerHTML = "&#x1f50a;"
+  //     } else {
+  //       wto.muted = true;
+  //       mute.innerHTML = "&#x1f507;"
+  //     }
+  //   });
+  //   document.getElementById("play-btn").addEventListener("click", () => {
+  //     const endPositions = ["endPos1", "endPos2"]
+  //     const endPos = endPositions[Math.floor(Math.random() * Math.floor(2))];
+  //     const game = new Game(ctx, eBar, endPos);
+  //     new GameView(game, ctx, eBar).start();
+  //     wto.currentTime = 0;
+  //     wto.play();
+  //     let moveLeft = false;
+  //     let moveRight = false;
+  //     document.addEventListener("keydown", event => {
+  //       if (event.code === "ArrowLeft") {
+  //         moveLeft = true;
+  //         game.moveBolt(moveLeft, moveRight);
+  //       } else if (event.code === "ArrowRight") {
+  //         moveRight = true;
+  //         game.moveBolt(moveLeft, moveRight);
+  //       }
+  //     });
+  //     document.addEventListener("keyup", event => {
+  //       if (event.code === "ArrowLeft") {
+  //         moveLeft = false;
+  //         game.moveBolt(moveLeft, moveRight);
+  //       } else if (event.code === "ArrowRight") {
+  //         moveRight = false;
+  //         game.moveBolt(moveLeft, moveRight);
+  //       }
+  //     });
+  //   });
+});
 })();
 
 /******/ })()

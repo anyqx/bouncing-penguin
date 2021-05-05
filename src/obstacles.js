@@ -53,3 +53,4 @@ class Pop extends Obstacles{
     }
 }
 export { Plastic, Pop };
+

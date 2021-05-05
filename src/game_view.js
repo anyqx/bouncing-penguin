@@ -38,17 +38,17 @@ class GameView {
     const fireCrossbow = this.fireCrossbow.bind(this);
     const removeCrossbow = this.removeCrossbow.bind(this);
     const checkMiss = this.checkMiss.bind(this);
-    setTimeout(function () {
+    setTimeout( () => {
       generateObjects();
       fireCrossbow();
     }, 14 * 10);
-    setTimeout(function () {
+    setTimeout( () => {
       removeCrossbow();
     }, 16 * 10);
-    setTimeout(function () {
+    setTimeout( () => {
       finalPhase();
     }, 93 * 1000);
-    setTimeout(function () {
+    setTimeout( () => {
       checkMiss();
     }, 100 * 1000);
     requestAnimationFrame(this.animate.bind(this));

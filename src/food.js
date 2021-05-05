@@ -1,119 +1,129 @@
+const food1 = new Image();
+food1.src = 'assets/image/food/fish_1';
+const food2 = new Image();
+food2.src = 'assets/image/food/fish_2';
+const food3 = new Image();
+food3.src = 'assets/image/food/fish_3';
+const food4 = new Image();
+food4.src = 'assets/image/food/fish_shrimp';
+const food5 = new Image();
+food5.src = 'assets/image/food/fish_squid';
+
 class Food {
-    // fish1, fish2, fish3, shrimp, squid
-    constructor(dimensions) {
-        this.dimensions = dimensions;
-        this.x = this.dimensions.width;
-        this.y = this.dimensions.height;
+    constructor(ctx) {
+        this.ctx = ctx;
+        this.type = type;
+        this.startPos = startPos;
+        this.hit = false;
+
+        if (this.type === "food1") this.food = food1;
+        if (this.type === "food2") this.food = food2;
+        if (this.type === "food3") this.food = food3;
+        if (this.type === "food4") this.food = food4;
+        if (this.type === "food5") this.food = food5;
+
+        if (this.startPos === "pos1") this.pos = [440, 50];
+        if (this.startPos === "pos2") this.pos = [540, 50];
+        if (this.startPos === "pos3") this.pos = [640, 50];
+        if (this.startPos === "pos4") this.pos = [740, 50];
+
+        this.centerPos = [
+            (this.pos[0] + (this.size / 2)),
+            (this.pos[1] + (this.size / 2))
+        ];
     }
 
-    move() {
-        this.x -= this.velocity;
+  draw() {
+    if (this.hit) {
+      this.ctx.save();
+      this.ctx.translate(this.pos[0], this.pos[1]);
+      this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
+      this.ctx.drawImage(
+        this.explosion,
+        -(this.explosionSize / 2),
+        -(this.explosionSize / 2),
+        this.explosionSize,
+        this.explosionSize
+      )
+      this.ctx.translate(-this.pos[0], -this.pos[1]);
+      this.ctx.restore();
+    } else {
+      const grd = this.ctx.createRadialGradient(
+        (this.pos[0]),
+        (this.pos[1]),
+        this.size * 0.3,
+        (this.pos[0]),
+        (this.pos[1]),
+        this.size
+      );
+      grd.addColorStop(0, "red");
+      grd.addColorStop(1, "transparent");
+  
+      this.ctx.beginPath();
+      this.ctx.arc(
+        (this.pos[0]),
+        (this.pos[1]),
+        (this.size / 2) * 1.5,
+        0,
+        2 * Math.PI
+      );
+      this.ctx.strokeStyle = "transparent";
+      this.ctx.stroke();
+      this.ctx.fillStyle = grd;
+      this.ctx.fill();
+  
+  
+      this.ctx.save();
+      this.ctx.translate(this.pos[0], this.pos[1]);
+      this.ctx.rotate(Math.PI / 180 * (this.angle += 3));
+  
+      this.ctx.drawImage(
+        this.food,
+        -(this.size / 2),
+        -(this.size / 2),
+        this.size,
+        this.size
+      )
+      this.ctx.translate(-this.pos[0], -this.pos[1]);
+      this.ctx.restore();
     }
+
+  }
+
+  move() {
+    if (this.hit) {
+      this.explosionSize += 6;
+      this.pos[1] += 7;
+
+      if (this.startPos === "pos1") {
+        this.pos[0] -= 1.0;
+      } else if (this.startPos === "pos2") {
+        this.pos[0] -= 0.3;
+      } else if (this.startPos === "pos3") {
+        this.pos[0] += 0.3;
+      } else if (this.startPos === "pos4") {
+        this.pos[0] += 1.0;
+      }
+    } else {
+      this.size += 0.7;
+      this.pos[1] += 7;
+  
+      if (this.startPos === "pos1") {
+        this.pos[0] -= 2.4;
+      } else if (this.startPos === "pos2") {
+        this.pos[0] -= 0.6;
+      } else if (this.startPos === "pos3") {
+        this.pos[0] += 0.8;
+      } else if (this.startPos === "pos4") {
+        this.pos[0] += 2.4;
+      }
+  
+      this.centerPos = [
+        (this.pos[0] - (this.size / 3)),
+        (this.pos[1] - (this.size / 3))
+      ];
+    }
+  }
 }
 
-class Fish1 extends Food {
-    constructor(dimensions) {
-        super(dimensions)
-        this.height = 130;
-        this.width = 130;
-        this.velocity = 5;
-    }
-
-    drawFish1(ctx) {
-        const fish1 = new Image();
-        fish1.src = 'src/fish1.png';
-        ctx.drawImage(fish1, this.x, this.y - 150, this.width, this.height)
-
-    }
-
-    animate(ctx) {
-        this.move();
-        this.drawFish1(ctx);
-    }
-}
-
-class Fish2 extends Food {
-    constructor(dimensions) {
-        super(dimensions)
-        this.height = 130;
-        this.width = 130;
-        this.velocity = 5;
-    }
-
-    drawFish2(ctx) {
-        const fish2 = new Image();
-        fish2.src = 'src/fish2.png';
-        ctx.drawImage(fish2, this.x, this.y - 150, this.width, this.height)
-
-    }
-
-    animate(ctx) {
-        this.move();
-        this.drawFish2(ctx);
-    }
-}
-
-class Fish3 extends Food {
-    constructor(dimensions) {
-        super(dimensions)
-        this.height = 130;
-        this.width = 130;
-        this.velocity = 5;
-    }
-
-    drawFish3(ctx) {
-        const fish3 = new Image();
-        fish3.src = 'src/fish3.png';
-        ctx.drawImage(fish3, this.x, this.y - 150, this.width, this.height)
-
-    }
-
-    animate(ctx) {
-        this.move();
-        this.drawFish3(ctx);
-    }
-}
-
-class Shrimp extends Food {
-    constructor(dimensions) {
-        super(dimensions)
-        this.height = 100;
-        this.width = 100;
-        this.velocity = 5;
-    }
-
-    drawShrimp(ctx) {
-        const shrimp = new Image();
-        shrimp.src = 'src/shrimp.png';
-        ctx.drawImage(shrimp, this.x, this.y - 150, this.width, this.height)
-
-    }
-
-    animate(ctx) {
-        this.move();
-        this.drawShrimp(ctx);
-    }
-}
-
-class Squid extends Food {
-    constructor(dimensions) {
-        super(dimensions)
-        this.height = 100;
-        this.width = 100;
-        this.velocity = 5;
-    }
-
-    drawSquid(ctx) {
-        const squid = new Image();
-        squid.src = 'src/squid.png';
-        ctx.drawImage(squid, this.x, this.y - 150, this.width, this.height)
-
-    }
-
-    animate(ctx) {
-        this.move();
-        this.drawSquid(ctx);
-    }
-}
-
-export { Fish1, Fish2, Fish3, Shrimp, Squid };
+export default Food;
