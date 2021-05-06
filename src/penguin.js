@@ -1,40 +1,27 @@
-const leftpenguin = new Image();
-leftPenguin.src = "assets/image/penguin/penguin_1.png";
-const rightpenguin = new Image();
-rightPenguin.src = "assets/image/penguin/penguin_2.png";
+const penguin = new Image();
+penguin.src = "assets/images/penguin/penguin_1.png";
 
 class Penguin {
   constructor(ctx) {
     this.ctx = ctx;
     this.pos = [550, 540];
-    this.leftPenguin = bolt;
-    this.dim_x = 100;
-    this.dim_y = 499;
+    this.penguin = penguin;
+    this.dim_x = 100; //penguin-size
+    this.dim_y = 100;
     this.speed = 5;
     this.moveLeft = false;
     this.moveRight = false;
     this.radius = 5;
     this.centerPos = [573.5, 580];
-    this.crossbow = crossbow;
-    this.crossbowStatus = "loaded";
     this.cbPos = [350, 550];
     this.cbDims = [500, 500];
     this.hit = false;
   }
 
   draw() {
-    if (this.crossbowStatus !== "fired") {
-      this.ctx.drawImage(
-        this.crossbow,
-        this.cbPos[0],
-        this.cbPos[1],
-        this.cbDims[0],
-        this.cbDims[1]
-      );
-    }
     if (!this.hit) {
       this.ctx.drawImage(
-        this.bolt,
+        this.penguin,
         this.pos[0],
         this.pos[1],
         this.dim_x,
@@ -52,9 +39,6 @@ class Penguin {
       this.pos[0] += this.speed;
       this.centerPos[0] += this.speed;
       this.cbPos[0] += this.speed;
-    }
-    if (this.crossbowStatus === "shooting") {
-      this.cbPos[1] += 5;
     }
   }
 

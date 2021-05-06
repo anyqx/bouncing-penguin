@@ -11,7 +11,7 @@ food5.src = "assets/images/foods/squid.png";
 
 
 const explosion = new Image();
-explosion.src = "assets/images/explosions/asteroid_explosion.png";
+explosion.src = "assets/images/game_over/explosion.png";
 
 class Food {
   constructor(ctx, type, startPos) {

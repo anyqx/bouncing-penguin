@@ -1,7 +1,7 @@
 import Game from "./game.js";
 import GameView from "./game_view.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded",  () => {
   
   const gameCanvas = document.getElementsByClassName("game-canvas")[0];
   gameCanvas.width = 1200;

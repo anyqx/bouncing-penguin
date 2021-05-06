@@ -11,32 +11,57 @@
 
     <title>Bouncing Penguin</title>
     <script type="text/javascript" src="dist/bundle.js" charset="utf-8" defer></script>
-    <link rel='stylesheet' href='src/styles/reset.css'>
-    <link rel='stylesheet' href='src/styles/index.css'>
+    <link rel='stylesheet' href='stylesheets/reset.css'>
+    <link rel='stylesheet' href='stylesheets/index.css'>
 
 </head>
 
 <body>
-    <div class='game-instruction'>
-        <h1>Welcome to</h1>
-        <h2>Bouncing Penguin</h2>
-        <div className='instructions'>
-            <h2>Instructions</h2>
-            <p>Press Space Tab to have the Penguins jump up and down</p>
-            <p>Try to eat as much as food and letters as possible to PROTECT PENGUINS on our Mother Earth</p>
+    <img src="assets/images/backgrounds/page_bg.jpg" alt="page_bg" class="page-bg">
+    <img src="assets/images/backgrounds/bouncing_penguin.png" alt="title" class="title">
+    <div class="body-top">
+        <div class="buttons">
+            <button id="play-btn">
+                <img src="assets/images/text/new_game.png" alt="play" class="play">
+            </button>
+            <button id="directions-btn">
+                <img src="assets/images/text/directions.png" alt="directions" class="directions">
+            </button>
         </div>
-
-        <div>
-            <button>Start</button>
+        <div class="audio">
+            <button id="audio-btn">
+                <img src="assets/images/text/audio.png" alt="audio" class="audio-img">
+                <p id="mute-symbol">&#x1f50a;</p>
+            </button>
+        </div>
+        <div class="links">
+            <a href="https://github.com/anyqx" class="github-btn">
+                <img src="assets/images/text/github.png" alt="github" class="github">
+            </a>
+            <a href="https://www.linkedin.com/in/annie-y-xu/" class="linkedin-btn">
+                <img src="assets/images/text/linkedin.png" alt="linkedin" class="linkedin">
+            </a>
         </div>
     </div>
-
-        <!-- <p id='scoreboard' >Score Board</p> -->
-    <div className='canvases'>    
-        <canvas id="game-canvas"></canvas>
-        <canvas id="score-canvas"></canvas>
-
+    <div class="canvases">
+        <canvas class="game-canvas"></canvas>
+        <canvas class="energy-bar"></canvas>
+    </div>
+    <div id="directions-modal">
+        <div class="directions-page">
+            <h1>Bouncing Penguin</h1>
+            <p>
+                GAME Description
+            </p>
+            <h2>Directions</h2>
+            <p>directions
+    
+            </p>
+            <button id="close-modal">Close</button>
+        </div>
     </div>
 </body>
 
+
 </html>
+
