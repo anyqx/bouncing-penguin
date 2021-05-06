@@ -19,9 +19,9 @@ class Trash {
     if (this.type === "trash2") this.trash = trash2;
 
 
-    if (this.startPos === "pos1") this.pos = [490, 50];
-    if (this.startPos === "pos2") this.pos = [590, 50];
-    if (this.startPos === "pos3") this.pos = [690, 50];
+    if (this.startPos === "pos1") this.pos = [200, 50];
+    if (this.startPos === "pos2") this.pos = [400, 50];
+    if (this.startPos === "pos3") this.pos = [800, 50];
 
     this.centerPos = [
       (this.pos[0] + (this.size / 2)), 
@@ -33,7 +33,7 @@ class Trash {
     if (this.hit) {
       this.ctx.drawImage(
         this.explosion,
-        this.pos[0] + 10,
+        this.pos[0] + 10, 
         this.pos[1] + 30,
         this.explosionSize,
         this.explosionSize
@@ -47,7 +47,7 @@ class Trash {
         (this.pos[1] + (this.size / 2)), 
         this.size * 1.0
       );
-      grd.addColorStop(0, "blue");
+      grd.addColorStop(0, "lightblue");
       grd.addColorStop(1, "transparent");
   
       this.ctx.beginPath();

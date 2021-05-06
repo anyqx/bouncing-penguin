@@ -50,14 +50,14 @@ class Food {
   draw() {
     if (this.hit) {
       this.ctx.save();
-      this.ctx.translate(this.pos[0], this.pos[1]);
-      this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
+      this.ctx.translate(this.pos[0], this.pos[1]); // this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
+
       this.ctx.drawImage(this.explosion, -(this.explosionSize / 2), -(this.explosionSize / 2), this.explosionSize, this.explosionSize);
       this.ctx.translate(-this.pos[0], -this.pos[1]);
       this.ctx.restore();
     } else {
       const grd = this.ctx.createRadialGradient(this.pos[0], this.pos[1], this.size * 0.3, this.pos[0], this.pos[1], this.size);
-      grd.addColorStop(0, "red");
+      grd.addColorStop(0, "orange");
       grd.addColorStop(1, "transparent");
       this.ctx.beginPath();
       this.ctx.arc(this.pos[0], this.pos[1], this.size / 2 * 1.5, 0, 2 * Math.PI);
@@ -66,8 +66,8 @@ class Food {
       this.ctx.fillStyle = grd;
       this.ctx.fill();
       this.ctx.save();
-      this.ctx.translate(this.pos[0], this.pos[1]);
-      this.ctx.rotate(Math.PI / 180 * (this.angle += 3));
+      this.ctx.translate(this.pos[0], this.pos[1]); // this.ctx.rotate(Math.PI / 180 * (this.angle += 3));
+
       this.ctx.drawImage(this.food, -(this.size / 2), -(this.size / 2), this.size, this.size);
       this.ctx.translate(-this.pos[0], -this.pos[1]);
       this.ctx.restore();
@@ -140,14 +140,14 @@ const lose = new Image();
 lose.src = "assets/images/text/lose.png";
 
 class Game {
-  constructor(ctx, eBar, endPos) {
+  constructor(ctx, score, endPos) {
     this.ctx = ctx;
-    this.eBar = eBar;
+    this.score = score;
     this.trashs = [];
     this.foods = [];
     this.home = new _home__WEBPACK_IMPORTED_MODULE_3__.default(ctx, endPos);
     this.penguin = new _penguin_js__WEBPACK_IMPORTED_MODULE_2__.default(ctx);
-    this.score = new _score__WEBPACK_IMPORTED_MODULE_4__.default(eBar);
+    this.score = new _score__WEBPACK_IMPORTED_MODULE_4__.default(score);
     this.bg_color = "#000000";
     this.dim_x = 1200;
     this.dim_y = 700;
@@ -155,8 +155,8 @@ class Game {
     this.gameStatus = "playing";
     this.win = win;
     this.lose = lose;
-    this.bar_x = 75;
-    this.bar_y = 700;
+    this.score_x = 75;
+    this.score_y = 700;
   } // Trash
 
 
@@ -319,14 +319,14 @@ class Game {
     clearInterval(this.foodIntervalId);
   }
 
-  draw(ctx, eBar) {
+  draw(ctx, score) {
     ctx.clearRect(0, 0, this.dim_x, this.dim_y);
     ctx.fillStyle = this.bg_color;
     ctx.fillRect(0, 0, this.dim_x, this.dim_y);
     ctx.drawImage(this.bgGame, 0, 0, this.dim_x, this.dim_y);
-    eBar.clearRect(0, 0, this.bar_x, this.bar_y);
-    eBar.fillStyle = this.bg_color;
-    eBar.fillRect(0, 0, this.bar_x, this.bar_y);
+    score.clearRect(0, 0, this.score_x, this.score_y);
+    score.fillStyle = this.bg_color;
+    score.fillRect(0, 0, this.score_x, this.score_y);
     this.score.draw();
     this.drawTrashs();
     this.drawFoods();
@@ -385,10 +385,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 class GameView {
-  constructor(game, ctx, eBar) {
+  constructor(game, ctx, score) {
     this.ctx = ctx;
     this.game = game;
-    this.eBar = eBar;
+    this.score = score;
   }
 
   generateObjects() {
@@ -427,7 +427,7 @@ class GameView {
 
   animate() {
     this.game.step();
-    this.game.draw(this.ctx, this.eBar);
+    this.game.draw(this.ctx, this.score);
     requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -450,7 +450,7 @@ __webpack_require__.r(__webpack_exports__);
 const home = new Image();
 home.src = "assets/images/home/ice_cave.png";
 const explosion = new Image();
-explosion.src = "assets/images/game_over/explosion.png";
+explosion.src = "assets/images/home/ice_cave.png";
 
 class Home {
   constructor(ctx, endPos) {
@@ -568,29 +568,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 class Score {
-  constructor(eBar) {
-    this.eBar = eBar;
+  constructor(score) {
+    this.score = score;
     this.scoreTop = 25;
     this.scoreLevel = 650;
   } // Orange
 
 
   draw() {
-    this.eBar.beginPath(); //use bar to show
-    // this.eBar.rect(25, this.scoreTop, 25, this.scoreLevel); 
+    this.score.beginPath(); //use bar to show
+    // this.score.rect(25, this.scoreTop, 25, this.scoreLevel); 
+    // this.score.strokeStyle = '#FCD390';
+    // this.score.lineWidth = 2;
+    // this.score.shadowColor = '#F08240';
+    // this.score.shadowBlur = 50;
+    // this.score.shadowOffsetX = 0;
+    // this.score.shadowOffsetY = 0;
+    // this.score.stroke();
+    // this.score.fill();
     //use score to show
 
-    this.eBar.font = '25px Arial';
-    this.eBar.fillStyle = '#FBFED1';
-    this.eBar.fillText(this.scoreLevel, 8, 20);
-    this.eBar.strokeStyle = '#FCD390';
-    this.eBar.lineWidth = 2;
-    this.eBar.shadowColor = '#F08240';
-    this.eBar.shadowBlur = 50;
-    this.eBar.shadowOffsetX = 0;
-    this.eBar.shadowOffsetY = 0;
-    this.eBar.stroke();
-    this.eBar.fill();
+    this.score.font = '25px Arial';
+    this.score.fillStyle = '#FBFED1';
+    this.score.fillText(this.scoreLevel, 8, 20);
   }
 
 }
@@ -627,9 +627,9 @@ class Trash {
     this.explosionSize = 30;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
-    if (this.startPos === "pos1") this.pos = [490, 50];
-    if (this.startPos === "pos2") this.pos = [590, 50];
-    if (this.startPos === "pos3") this.pos = [690, 50];
+    if (this.startPos === "pos1") this.pos = [200, 50];
+    if (this.startPos === "pos2") this.pos = [400, 50];
+    if (this.startPos === "pos3") this.pos = [800, 50];
     this.centerPos = [this.pos[0] + this.size / 2, this.pos[1] + this.size / 2];
   }
 
@@ -638,7 +638,7 @@ class Trash {
       this.ctx.drawImage(this.explosion, this.pos[0] + 10, this.pos[1] + 30, this.explosionSize, this.explosionSize);
     } else {
       const grd = this.ctx.createRadialGradient(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 0.3, this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 1.0);
-      grd.addColorStop(0, "blue");
+      grd.addColorStop(0, "lightblue");
       grd.addColorStop(1, "transparent");
       this.ctx.beginPath();
       this.ctx.arc(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size / 2 * 1.3, 0, 2 * Math.PI);
@@ -748,10 +748,10 @@ document.addEventListener("DOMContentLoaded", () => {
   gameCanvas.width = 1200;
   gameCanvas.height = 700;
   const ctx = gameCanvas.getContext("2d");
-  const energyBar = document.getElementsByClassName("energy-bar")[0];
-  energyBar.width = 75;
-  energyBar.height = 700;
-  const eBar = energyBar.getContext("2d");
+  const scoreCanvas = document.getElementsByClassName("score-canvas")[0];
+  scoreCanvas.width = 75;
+  scoreCanvas.height = 700;
+  const score = scoreCanvas.getContext("2d");
   const bgMusic = new Audio("assets/audio/bg_music.mp3");
   const directions = document.getElementById("directions-modal");
   const directionsBtn = document.getElementById("directions-btn");
@@ -779,8 +779,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("play-btn").addEventListener("click", () => {
     const endPositions = ["endPos1", "endPos2"];
     const endPos = endPositions[Math.floor(Math.random() * Math.floor(2))];
-    const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__.default(ctx, eBar, endPos);
-    new _game_view_js__WEBPACK_IMPORTED_MODULE_1__.default(game, ctx, eBar).start();
+    const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__.default(ctx, score, endPos);
+    new _game_view_js__WEBPACK_IMPORTED_MODULE_1__.default(game, ctx, score).start();
     bgMusic.currentTime = 0;
     bgMusic.play();
     let moveLeft = false;

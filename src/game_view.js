@@ -1,8 +1,8 @@
 class GameView {
-  constructor(game, ctx, eBar) {
+  constructor(game, ctx, score) {
     this.ctx = ctx;
     this.game = game;
-    this.eBar = eBar;
+    this.score = score;
   }
 
   generateObjects() {
@@ -42,7 +42,7 @@ class GameView {
   
   animate() {
     this.game.step();
-    this.game.draw(this.ctx, this.eBar);
+    this.game.draw(this.ctx, this.score);
   
     requestAnimationFrame(this.animate.bind(this));
   };

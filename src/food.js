@@ -44,7 +44,7 @@ class Food {
     if (this.hit) {
       this.ctx.save();
       this.ctx.translate(this.pos[0], this.pos[1]);
-      this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
+      // this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
       this.ctx.drawImage(
         this.explosion,
         -(this.explosionSize / 2),
@@ -63,7 +63,7 @@ class Food {
         (this.pos[1]),
         this.size
       );
-      grd.addColorStop(0, "red");
+      grd.addColorStop(0, "orange");
       grd.addColorStop(1, "transparent");
   
       this.ctx.beginPath();
@@ -82,7 +82,7 @@ class Food {
   
       this.ctx.save();
       this.ctx.translate(this.pos[0], this.pos[1]);
-      this.ctx.rotate(Math.PI / 180 * (this.angle += 3));
+      // this.ctx.rotate(Math.PI / 180 * (this.angle += 3));
   
       this.ctx.drawImage(
         this.food,

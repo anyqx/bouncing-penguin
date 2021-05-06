@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded",  () => {
   gameCanvas.width = 1200;
   gameCanvas.height = 700;
   const ctx = gameCanvas.getContext("2d");
-  const energyBar = document.getElementsByClassName("energy-bar")[0];
-  energyBar.width = 75;
-  energyBar.height = 700;
-  const eBar = energyBar.getContext("2d");
+  const scoreCanvas = document.getElementsByClassName("score-canvas")[0];
+  scoreCanvas.width = 75;
+  scoreCanvas.height = 700;
+  const score = scoreCanvas.getContext("2d");
   const bgMusic = new Audio("assets/audio/bg_music.mp3")
 
   const directions = document.getElementById("directions-modal");
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded",  () => {
     const endPositions = ["endPos1", "endPos2"]
     const endPos = endPositions[Math.floor(Math.random() * Math.floor(2))];
     
-    const game = new Game(ctx, eBar, endPos);
-    new GameView(game, ctx, eBar).start();
+    const game = new Game(ctx, score, endPos);
+    new GameView(game, ctx, score).start();
 
     bgMusic.currentTime = 0;
     bgMusic.play();

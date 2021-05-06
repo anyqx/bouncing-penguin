@@ -1,7 +1,7 @@
 const home = new Image();
 home.src = "assets/images/home/ice_cave.png";
 const explosion = new Image();
-explosion.src = "assets/images/game_over/explosion.png";
+explosion.src = "assets/images/home/ice_cave.png";
 
 class Home {
   constructor(ctx, endPos) {

@@ -12,14 +12,14 @@ const lose = new Image();
 lose.src = "assets/images/text/lose.png"
 
 class Game {
-  constructor(ctx, eBar, endPos) {
+  constructor(ctx, score, endPos) {
     this.ctx = ctx;
-    this.eBar = eBar;
+    this.score = score;
     this.trashs = [];
     this.foods = [];
     this.home = new Home(ctx, endPos);
     this.penguin = new Penguin(ctx);
-    this.score = new Score(eBar);
+    this.score = new Score(score);
     this.bg_color = "#000000";
     this.dim_x = 1200;
     this.dim_y = 700;
@@ -27,8 +27,8 @@ class Game {
     this.gameStatus = "playing";
     this.win = win;
     this.lose = lose;
-    this.bar_x = 75;
-    this.bar_y = 700;
+    this.score_x = 75;
+    this.score_y = 700;
   }
 
 
@@ -210,14 +210,14 @@ class Game {
     clearInterval(this.foodIntervalId);
   }
 
-  draw(ctx, eBar) {
+  draw(ctx, score) {
     ctx.clearRect(0, 0, this.dim_x, this.dim_y);
     ctx.fillStyle = this.bg_color;
     ctx.fillRect(0, 0, this.dim_x, this.dim_y);
     ctx.drawImage(this.bgGame, 0, 0, this.dim_x, this.dim_y);
-    eBar.clearRect(0, 0, this.bar_x, this.bar_y);
-    eBar.fillStyle = this.bg_color;
-    eBar.fillRect(0, 0, this.bar_x, this.bar_y)
+    score.clearRect(0, 0, this.score_x, this.score_y);
+    score.fillStyle = this.bg_color;
+    score.fillRect(0, 0, this.score_x, this.score_y)
     this.score.draw();
     this.drawTrashs();
     this.drawFoods();
