@@ -6,18 +6,10 @@ class GameView {
   }
 
   generateObjects() {
-    this.game.generateStars(this.ctx);
-    this.game.generatePlanets(this.ctx);
-    this.game.generateAsteroids(this.ctx);
+    this.game.generateTrashs(this.ctx);
+    this.game.generateFoods(this.ctx);
   }
 
-  fireCrossbow() {
-    this.game.bolt.crossbowStatus = "shooting";
-  }
-
-  removeCrossbow() {
-    this.game.bolt.crossbowStatus = "fired";
-  }
 
   finalPhase() {
     if (this.game.gameStatus === "playing") {
@@ -35,19 +27,13 @@ class GameView {
   start() {
     const generateObjects = this.generateObjects.bind(this);
     const finalPhase = this.finalPhase.bind(this);
-    const fireCrossbow = this.fireCrossbow.bind(this);
-    const removeCrossbow = this.removeCrossbow.bind(this);
     const checkMiss = this.checkMiss.bind(this);
     setTimeout( () => {
       generateObjects();
-      fireCrossbow();
     }, 14 * 10);
     setTimeout( () => {
-      removeCrossbow();
-    }, 16 * 10);
-    setTimeout( () => {
-      finalPhase();
-    }, 93 * 1000);
+      finalPhase(); //win
+    }, 10 * 1000);
     setTimeout( () => {
       checkMiss();
     }, 100 * 1000);

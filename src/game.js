@@ -1,23 +1,25 @@
-import Food from './food';
-import Obstables from './obstables.js';
+import Trash from './trash.js';
+import Food from './food.js';
 import Penguin from './penguin.js';
-import ScoreBar from './scorebar';
+import Home from './home';
+import Score from './score';
 
 const bgGame = new Image();
-bgGame.src = "assets/images/backgrounds/game_bg.jpg";
+bgGame.src = "assets/images/backgrounds/background.jpg";
 const win = new Image();
 win.src = "assets/images/text/win.png"
 const lose = new Image();
 lose.src = "assets/images/text/lose.png"
 
 class Game {
-  constructor(ctx, scoreBar, endPos) {
+  constructor(ctx, eBar, endPos) {
     this.ctx = ctx;
-    this.scoreBar = scoreBar;
+    this.eBar = eBar;
+    this.trashs = [];
     this.foods = [];
-    this.obstacles = [];
-    this.penguin= new Penguin(ctx);
-    this.scoreBar = new ScoreBar(scoreBar);
+    this.home = new Home(ctx, endPos);
+    this.penguin = new Penguin(ctx);
+    this.score = new Score(eBar);
     this.bg_color = "#000000";
     this.dim_x = 1200;
     this.dim_y = 700;
@@ -30,92 +32,88 @@ class Game {
   }
 
 
-  // Food
+  // Planets
+
+  addTrash() {
+    const trashs = [
+      "trash1", 
+      "trash2"
+    ];
+    const positions = ["pos1", "pos2", "pos3"];
+    const trash = trashs[Math.floor(Math.random() * Math.floor(2))] //random trash coming out
+    const pos = positions[Math.floor(Math.random() * Math.floor(3))];
+    this.trashs.push(new Trash(this.ctx, trash, pos));
+  }
+
+  removeTrash() {
+    this.trashs.shift();
+  }
+
+  drawTrashs() {
+    this.trashs.forEach(trash => {
+      trash.draw();
+    });
+  }
+
+  generateTrashs() {
+
+    const addTrash = this.addTrash.bind(this);
+    const removeTrash = this.removeTrash.bind(this);
+    this.trashIntervalId = setInterval( () => {
+
+      addTrash();
+
+      setTimeout( () => {
+        removeTrash();
+      }, 15 * 1000)
+    }, 800);
+  };
+
+  // Foods
 
   addFood() {
     const foods = [
-      "food1", 
-      "food2", 
+      "food1",
+      "food2",
       "food3",
       "food4",
       "food5"
     ];
-    const positions = ["pos1", "pos2", "pos3"];
-    const foods = foods[Math.floor(Math.random() * Math.floor(5))] //random planet coming out
-    const pos = positions[Math.floor(Math.random() * Math.floor(3))];
+    const positions = ["pos1", "pos2", "pos3", "pos4"];
+    const food = foods[Math.floor(Math.random() * Math.floor(5))]
+    const pos = positions[Math.floor(Math.random() * Math.floor(4))];
     this.foods.push(new Food(this.ctx, food, pos));
   }
 
   removeFood() {
-    this.food.shift();
+    this.foods.shift();
   }
 
-  drawFood() {
+  drawFoods() {
     this.foods.forEach(food => {
       food.draw();
     });
   }
 
-  generateFood() {
+  generateFoods() {
 
     const addFood = this.addFood.bind(this);
     const removeFood = this.removeFood.bind(this);
-    this.foodIntervalId = setInterval( () => {
+    this.foodIntervalId = setInterval(() => { 
 
       addFood();
 
-      setTimeout(() => {
+      setTimeout( () => {
         removeFood();
-      }, 15 * 1000)
-    }, 800);
-  };
-
-  // Obstacles
-
-  addAsteroid() {
-    const asteroids = [
-      "asteroid1",
-      "asteroid2",
-      "asteroid3",
-      "asteroid4",
-      "asteroid5",
-      "asteroid6"
-    ];
-    const positions = ["pos1", "pos2", "pos3", "pos4"];
-    const asteroid = asteroids[Math.floor(Math.random() * Math.floor(6))]
-    const pos = positions[Math.floor(Math.random() * Math.floor(4))];
-    this.asteroids.push(new Asteroid(this.ctx, asteroid, pos));
-  }
-
-  removeAsteroid() {
-    this.asteroids.shift();
-  }
-
-  drawAsteroids() {
-    this.asteroids.forEach(asteroid => {
-      asteroid.draw();
-    });
-  }
-
-  generateAsteroids() {
-
-    const addAsteroid = this.addAsteroid.bind(this);
-    const removeAsteroid = this.removeAsteroid.bind(this);
-    this.asteroidIntervalId = setInterval(function () { 
-
-      addAsteroid();
-
-      setTimeout(function () {
-        removeAsteroid();
       }, 6000)
     }, 250);
   };
 
-  // Bolt
+  // Penguin
 
-  moveBolt(moveLeft, moveRight) {
-    this.bolt.moveLeft = moveLeft;
-    this.bolt.moveRight = moveRight;
+  movePenguin(moveLeft, moveRight) {
+    this.penguin.moveLeft = moveLeft;
+    this.penguin.moveRight = moveRight;
   }
 
   loseConditionOne() {
@@ -132,89 +130,113 @@ class Game {
 
   // Collisions
 
+  // checkStarCollisions() {
+  //   const penguin = this.penguin;
+  //   const stars = this.stars;
+  //   const loseConditionOne = this.loseConditionOne.bind(this);
+
+  //   for (let i = 0; i < stars.length; i++) {
+  //     const star = stars[i]
+
+  //     if (penguin.isCollidedWith(star)) {
+  //       star.hit = true;
+  //       penguin.hit = true;
+  //       clearInterval(this.starIntervalId);
+  //       clearInterval(this.trashIntervalId);
+  //       clearInterval(this.foodIntervalId);
+  //       this.stars = [star];
+  //       this.trashs = [];
+  //       this.foods = [];
+  //       setTimeout( () => {
+  //         loseConditionOne();
+  //       }, 3000)
+  //     }
+  //   }
+  // }
+
+  checkTrashCollisions() {
+    const penguin = this.penguin;
+    const trashs = this.trashs;
+    const loseConditionOne = this.loseConditionOne.bind(this);
+
+    for (let i = 0; i < trashs.length; i++) {
+      const trash = trashs[i]
+
+      if (penguin.isCollidedWith(trash)) {
+        trash.hit = true;
+        penguin.hit = true;
+        // clearInterval(this.starIntervalId);
+        clearInterval(this.trashIntervalId);
+        clearInterval(this.foodIntervalId);
+        this.trashs = [trash];
+        // this.stars = [];
+        this.foods = [];
+        setTimeout( () => {
+          loseConditionOne();
+        }, 3000)
+      }
+    }
+  }
+
   checkFoodCollisions() {
     const penguin = this.penguin;
     const foods = this.foods;
-    const loseConditionOne = this.loseConditionOne.bind(this);
+    const score = this.score;
 
     for (let i = 0; i < foods.length; i++) {
       const food = foods[i]
 
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
-        penguin.hit = true;
-        clearInterval(this.starIntervalId);
-        clearInterval(this.planetIntervalId);
-        clearInterval(this.asteroidIntervalId);
-        this.planets = [planet];
-        this.stars = [];
-        this.asteroids = [];
-        setTimeout(function () {
-          loseConditionOne();
-        }, 3000)
+        if (score.scoreTop < 675) score.scoreTop += 5;
+        if (score.scoreLevel > 0) score.scoreLevel -= 5;
       }
     }
   }
 
-  checkAsteroidCollisions() {
-    const bolt = this.bolt;
-    const asteroids = this.asteroids;
-    const energy = this.energy;
+  // checkEarthCollision() {
+  //   const penguin = this.penguin;
+  //   const earth = this.earth;
+  //   const loseConditionTwo = this.loseConditionTwo.bind(this);
 
-    for (let i = 0; i < asteroids.length; i++) {
-      const asteroid = asteroids[i]
+  //   if (penguin.isCollidedWith(earth)) {
+  //     earth.hit = true;
+  //     penguin.hit = true;
+  //     setTimeout( () => {
+  //       loseConditionTwo();
+  //     }, 3000)
+  //   }
+  // }
 
-      if (bolt.isCollidedWith(asteroid)) {
-        asteroid.hit = true;
-        if (energy.energyTop < 675) energy.energyTop += 5;
-        if (energy.energyLevel > 0) energy.energyLevel -= 5;
-      }
-    }
-  }
-
-  checkEarthCollision() {
-    const bolt = this.bolt;
-    const earth = this.earth;
-    const loseConditionTwo = this.loseConditionTwo.bind(this);
-
-    if (bolt.isCollidedWith(earth)) {
-      earth.hit = true;
-      bolt.hit = true;
-      setTimeout(function () {
-        loseConditionTwo();
-      }, 3000)
-    }
-  }
-
-  checkMurderMoonCollision() {
-    const bolt = this.bolt;
-    const energy = this.energy;
-    const murderMoon = this.murderMoon;
+  checkHomeCollision() {
+    const penguin = this.penguin;
+    const score = this.score;
+    const home = this.home;
     const winCondition = this.winCondition.bind(this);
     const loseConditionOne = this.loseConditionOne.bind(this);
 
-    if (bolt.isCollidedWith(murderMoon)) {
-      bolt.hit = true;
-      if (energy.energyLevel > 0) {
-        murderMoon.hit = true;
-        setTimeout(function () {
+    if (penguin.isCollidedWith(home)) {
+      penguin.hit = true;
+      if (score.scoreLevel > 0) {
+        home.hit = true;
+        setTimeout( () => {
           winCondition();
         }, 3000)
       } else {
-        setTimeout(function () {
+        setTimeout( () => {
           loseConditionOne();
         }, 3000)
       }
     }
   }
 
-  checkEnergyLevel() {
-    const energy = this.energy;
+  checkScoreLevel() {
+    const score = this.score;
     const loseConditionOne = this.loseConditionOne.bind(this);
 
-    if (energy.energyLevel < 1) {
+    if (score.scoreLevel < 1) {
       this.stopObjects();
-      setTimeout(function () {
+      setTimeout( () => {
         loseConditionOne();
       }, 3000)
     }
@@ -223,9 +245,9 @@ class Game {
   // Animation
 
   stopObjects() {
-    clearInterval(this.starIntervalId);
-    clearInterval(this.planetIntervalId);
-    clearInterval(this.asteroidIntervalId);
+    // clearInterval(this.starIntervalId);
+    clearInterval(this.trashIntervalId);
+    clearInterval(this.foodIntervalId);
   }
 
   draw(ctx, eBar) {
@@ -236,17 +258,17 @@ class Game {
     eBar.clearRect(0, 0, this.bar_x, this.bar_y);
     eBar.fillStyle = this.bg_color;
     eBar.fillRect(0, 0, this.bar_x, this.bar_y)
-    this.energy.draw();
-    this.drawStars();
-    this.drawPlanets();
-    this.drawAsteroids();
+    this.score.draw();
+    // this.drawStars();
+    this.drawTrashs();
+    this.drawFoods();
 
     if (this.gameStatus === "playing") {
-      this.bolt.draw();
+      this.penguin.draw();
     } else if (this.gameStatus === "ending") {
-      this.earth.draw();
-      this.murderMoon.draw();
-      this.bolt.draw();
+      // this.earth.draw();
+      this.home.draw();
+      this.penguin.draw();
     } else if (this.gameStatus === "loseOne") {
       ctx.drawImage(
         this.lose,
@@ -269,38 +291,38 @@ class Game {
   };
 
   step() {
-    this.bolt.move();
+    this.penguin.move();
 
-    this.asteroids.forEach(asteroid => {
-      if (asteroid) {
-        asteroid.move();
+    this.foods.forEach(food => {
+      if (food) {
+        food.move();
       }
     });
 
-    this.planets.forEach(planet => {
-      if (planet) {
-        planet.move();
+    this.trashs.forEach(trash => {
+      if (trash) {
+        trash.move();
       }
     });
 
-    this.stars.forEach(star => {
-      if (star) {
-        star.move();
-      }
-    });
+    // this.stars.forEach(star => {
+    //   if (star) {
+    //     star.move();
+    //   }
+    // });
 
-    this.checkEnergyLevel();
-    this.checkStarCollisions();
-    this.checkPlanetCollisions();
-    this.checkAsteroidCollisions();
+    this.checkScoreLevel();
+    // this.checkStarCollisions();
+    this.checkTrashCollisions();
+    this.checkFoodCollisions();
 
     if (this.gameStatus === "ending") {
-      this.bolt.move();
-      this.murderMoon.move();
-      this.earth.move();
+      this.penguin.move();
+      this.home.move();
+      // this.earth.move();
 
-      this.checkEarthCollision();
-      this.checkMurderMoonCollision();
+      // this.checkEarthCollision();
+      this.checkHomeCollision();
     }
   }
 
