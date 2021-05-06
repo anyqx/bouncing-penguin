@@ -32,7 +32,7 @@ class Game {
   }
 
 
-  // Planets
+  // Trash
 
   addTrash() {
     const trashs = [
@@ -128,32 +128,6 @@ class Game {
     this.gameStatus = "victory";
   }
 
-  // Collisions
-
-  // checkStarCollisions() {
-  //   const penguin = this.penguin;
-  //   const stars = this.stars;
-  //   const loseConditionOne = this.loseConditionOne.bind(this);
-
-  //   for (let i = 0; i < stars.length; i++) {
-  //     const star = stars[i]
-
-  //     if (penguin.isCollidedWith(star)) {
-  //       star.hit = true;
-  //       penguin.hit = true;
-  //       clearInterval(this.starIntervalId);
-  //       clearInterval(this.trashIntervalId);
-  //       clearInterval(this.foodIntervalId);
-  //       this.stars = [star];
-  //       this.trashs = [];
-  //       this.foods = [];
-  //       setTimeout( () => {
-  //         loseConditionOne();
-  //       }, 3000)
-  //     }
-  //   }
-  // }
-
   checkTrashCollisions() {
     const penguin = this.penguin;
     const trashs = this.trashs;
@@ -194,19 +168,6 @@ class Game {
     }
   }
 
-  // checkEarthCollision() {
-  //   const penguin = this.penguin;
-  //   const earth = this.earth;
-  //   const loseConditionTwo = this.loseConditionTwo.bind(this);
-
-  //   if (penguin.isCollidedWith(earth)) {
-  //     earth.hit = true;
-  //     penguin.hit = true;
-  //     setTimeout( () => {
-  //       loseConditionTwo();
-  //     }, 3000)
-  //   }
-  // }
 
   checkHomeCollision() {
     const penguin = this.penguin;
@@ -245,7 +206,6 @@ class Game {
   // Animation
 
   stopObjects() {
-    // clearInterval(this.starIntervalId);
     clearInterval(this.trashIntervalId);
     clearInterval(this.foodIntervalId);
   }
@@ -259,14 +219,12 @@ class Game {
     eBar.fillStyle = this.bg_color;
     eBar.fillRect(0, 0, this.bar_x, this.bar_y)
     this.score.draw();
-    // this.drawStars();
     this.drawTrashs();
     this.drawFoods();
 
     if (this.gameStatus === "playing") {
       this.penguin.draw();
     } else if (this.gameStatus === "ending") {
-      // this.earth.draw();
       this.home.draw();
       this.penguin.draw();
     } else if (this.gameStatus === "loseOne") {
@@ -305,23 +263,14 @@ class Game {
       }
     });
 
-    // this.stars.forEach(star => {
-    //   if (star) {
-    //     star.move();
-    //   }
-    // });
 
     this.checkScoreLevel();
-    // this.checkStarCollisions();
     this.checkTrashCollisions();
     this.checkFoodCollisions();
 
     if (this.gameStatus === "ending") {
       this.penguin.move();
       this.home.move();
-      // this.earth.move();
-
-      // this.checkEarthCollision();
       this.checkHomeCollision();
     }
   }

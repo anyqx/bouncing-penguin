@@ -1,37 +1,44 @@
 const food1 = new Image();
-food1.src = 'assets/image/food/fish_1';
+food1.src = "assets/images/foods/fish_1.png";
 const food2 = new Image();
-food2.src = 'assets/image/food/fish_2';
+food2.src = "assets/images/foods/fish_2.png";
 const food3 = new Image();
-food3.src = 'assets/image/food/fish_3';
+food3.src = "assets/images/foods/fish_3.png";
 const food4 = new Image();
-food4.src = 'assets/image/food/fish_shrimp';
+food4.src = "assets/images/foods/shrimp.png";
 const food5 = new Image();
-food5.src = 'assets/image/food/fish_squid';
+food5.src = "assets/images/foods/squid.png";
+
+
+const explosion = new Image();
+explosion.src = "assets/images/explosions/asteroid_explosion.png";
 
 class Food {
-    constructor(ctx) {
-        this.ctx = ctx;
-        this.type = type;
-        this.startPos = startPos;
-        this.hit = false;
+  constructor(ctx, type, startPos) {
+    this.ctx = ctx;
+    this.type = type;
+    this.startPos = startPos;
+    this.size = 5;
+    this.angle = 0;
+    this.hit = false;
+    this.explosion = explosion;
+    this.explosionSize = 50;
+    if (this.type === "food1") this.food = food1;
+    if (this.type === "food2") this.food = food2;
+    if (this.type === "food3") this.food = food3;
+    if (this.type === "food4") this.food = food4;
+    if (this.type === "food5") this.food = food5;
 
-        if (this.type === "food1") this.food = food1;
-        if (this.type === "food2") this.food = food2;
-        if (this.type === "food3") this.food = food3;
-        if (this.type === "food4") this.food = food4;
-        if (this.type === "food5") this.food = food5;
+    if (this.startPos === "pos1") this.pos = [440, 50];
+    if (this.startPos === "pos2") this.pos = [540, 50];
+    if (this.startPos === "pos3") this.pos = [640, 50];
+    if (this.startPos === "pos4") this.pos = [740, 50];
 
-        if (this.startPos === "pos1") this.pos = [440, 50];
-        if (this.startPos === "pos2") this.pos = [540, 50];
-        if (this.startPos === "pos3") this.pos = [640, 50];
-        if (this.startPos === "pos4") this.pos = [740, 50];
-
-        this.centerPos = [
-            (this.pos[0] + (this.size / 2)),
-            (this.pos[1] + (this.size / 2))
-        ];
-    }
+    this.centerPos = [
+      (this.pos[0] + (this.size / 2)),
+      (this.pos[1] + (this.size / 2))
+    ];
+  }
 
   draw() {
     if (this.hit) {
