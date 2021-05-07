@@ -56,14 +56,14 @@ class Food {
       this.ctx.translate(-this.pos[0], -this.pos[1]);
       this.ctx.restore();
     } else {
-      const grd = this.ctx.createRadialGradient(this.pos[0], this.pos[1], this.size * 0.3, this.pos[0], this.pos[1], this.size);
-      grd.addColorStop(0, "orange");
-      grd.addColorStop(1, "transparent");
+      const bubble = this.ctx.createRadialGradient(this.pos[0], this.pos[1], this.size * 0.3, this.pos[0], this.pos[1], this.size);
+      bubble.addColorStop(0, "orange");
+      bubble.addColorStop(1, "transparent");
       this.ctx.beginPath();
       this.ctx.arc(this.pos[0], this.pos[1], this.size / 2 * 1.5, 0, 2 * Math.PI);
       this.ctx.strokeStyle = "transparent";
       this.ctx.stroke();
-      this.ctx.fillStyle = grd;
+      this.ctx.fillStyle = bubble;
       this.ctx.fill();
       this.ctx.save();
       this.ctx.translate(this.pos[0], this.pos[1]); // this.ctx.rotate(Math.PI / 180 * (this.angle += 3));
@@ -330,9 +330,7 @@ class Game {
     } else if (this.gameStatus === "ending") {
       this.home.draw();
       this.penguin.draw();
-    } else if (this.gameStatus === "loseOne") {
-      ctx.drawImage(this.lose, 252, 295.5);
-    } else if (this.gameStatus === "loseTwo") {
+    } else if (this.gameStatus === "lose") {
       ctx.drawImage(this.lose, 252, 295.5);
     } else if (this.gameStatus === "victory") {
       ctx.drawImage(this.win, 253.5, 321);
@@ -618,7 +616,7 @@ class Trash {
     this.size = 5;
     this.hit = false;
     this.explosion = explosion;
-    this.explosionSize = 30;
+    this.explosionSize = 20;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
     if (this.startPos === "pos1") this.pos = [200, 50];
@@ -631,14 +629,14 @@ class Trash {
     if (this.hit) {
       this.ctx.drawImage(this.explosion, this.pos[0] + 10, this.pos[1] + 30, this.explosionSize, this.explosionSize);
     } else {
-      const grd = this.ctx.createRadialGradient(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 0.3, this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 1.0);
-      grd.addColorStop(0, "lightblue");
-      grd.addColorStop(1, "transparent");
+      const bubble = this.ctx.createRadialGradient(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 0.3, this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 1.0);
+      bubble.addColorStop(0, "lightblue");
+      bubble.addColorStop(1, "transparent");
       this.ctx.beginPath();
       this.ctx.arc(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size / 2 * 1.3, 0, 2 * Math.PI);
       this.ctx.strokeStyle = "transparent";
       this.ctx.stroke();
-      this.ctx.fillStyle = grd;
+      this.ctx.fillStyle = bubble;
       this.ctx.fill();
       this.ctx.drawImage(this.trash, this.pos[0], this.pos[1], this.size, this.size);
     }

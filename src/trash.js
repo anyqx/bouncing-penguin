@@ -14,7 +14,7 @@ class Trash {
     this.size = 5;
     this.hit = false;
     this.explosion = explosion;
-    this.explosionSize = 30;
+    this.explosionSize = 20;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
 
@@ -39,7 +39,7 @@ class Trash {
         this.explosionSize
       );
     } else {
-      const grd = this.ctx.createRadialGradient(
+      const bubble = this.ctx.createRadialGradient(
         (this.pos[0] + (this.size / 2)), 
         (this.pos[1] + (this.size / 2)), 
         this.size * 0.3, 
@@ -47,8 +47,8 @@ class Trash {
         (this.pos[1] + (this.size / 2)), 
         this.size * 1.0
       );
-      grd.addColorStop(0, "lightblue");
-      grd.addColorStop(1, "transparent");
+      bubble.addColorStop(0, "lightblue");
+      bubble.addColorStop(1, "transparent");
   
       this.ctx.beginPath();
       this.ctx.arc(
@@ -60,7 +60,7 @@ class Trash {
       );
       this.ctx.strokeStyle = "transparent";
       this.ctx.stroke();
-      this.ctx.fillStyle = grd;
+      this.ctx.fillStyle = bubble;
       this.ctx.fill();
   
   

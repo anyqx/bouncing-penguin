@@ -222,13 +222,7 @@ class Game {
     } else if (this.gameStatus === "ending") {
       this.home.draw();
       this.penguin.draw();
-    } else if (this.gameStatus === "loseOne") {
-      ctx.drawImage(
-        this.lose,
-        252,
-        295.5
-      )
-    } else if (this.gameStatus === "loseTwo") {
+    } else if (this.gameStatus === "lose") {
       ctx.drawImage(
         this.lose,
         252,

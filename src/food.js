@@ -55,7 +55,7 @@ class Food {
       this.ctx.translate(-this.pos[0], -this.pos[1]);
       this.ctx.restore();
     } else {
-      const grd = this.ctx.createRadialGradient(
+      const bubble = this.ctx.createRadialGradient(
         (this.pos[0]),
         (this.pos[1]),
         this.size * 0.3,
@@ -63,8 +63,8 @@ class Food {
         (this.pos[1]),
         this.size
       );
-      grd.addColorStop(0, "orange");
-      grd.addColorStop(1, "transparent");
+      bubble.addColorStop(0, "orange");
+      bubble.addColorStop(1, "transparent");
   
       this.ctx.beginPath();
       this.ctx.arc(
@@ -76,7 +76,7 @@ class Food {
       );
       this.ctx.strokeStyle = "transparent";
       this.ctx.stroke();
-      this.ctx.fillStyle = grd;
+      this.ctx.fillStyle = bubble;
       this.ctx.fill();
   
   
