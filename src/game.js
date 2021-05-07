@@ -116,13 +116,10 @@ class Game {
     this.penguin.moveRight = moveRight;
   }
 
-  loseConditionOne() {
-    this.gameStatus = "loseOne";
+  loseCondition() {
+    this.gameStatus = "lose";
   }
 
-  loseConditionTwo() {
-    this.gameStatus = "loseTwo";
-  }
 
   winCondition() {
     this.gameStatus = "victory";
@@ -131,7 +128,7 @@ class Game {
   checkTrashCollisions() {
     const penguin = this.penguin;
     const trashs = this.trashs;
-    const loseConditionOne = this.loseConditionOne.bind(this);
+    const loseCondition = this.loseCondition.bind(this);
 
     for (let i = 0; i < trashs.length; i++) {
       const trash = trashs[i]
@@ -139,14 +136,12 @@ class Game {
       if (penguin.isCollidedWith(trash)) {
         trash.hit = true;
         penguin.hit = true;
-        // clearInterval(this.starIntervalId);
         clearInterval(this.trashIntervalId);
         clearInterval(this.foodIntervalId);
         this.trashs = [trash];
-        // this.stars = [];
         this.foods = [];
         setTimeout( () => {
-          loseConditionOne();
+          loseCondition();
         }, 3000)
       }
     }
@@ -174,7 +169,7 @@ class Game {
     const score = this.score;
     const home = this.home;
     const winCondition = this.winCondition.bind(this);
-    const loseConditionOne = this.loseConditionOne.bind(this);
+    const loseCondition = this.loseCondition.bind(this);
 
     if (penguin.isCollidedWith(home)) {
       penguin.hit = true;
@@ -185,7 +180,7 @@ class Game {
         }, 3000)
       } else {
         setTimeout( () => {
-          loseConditionOne();
+          loseCondition();
         }, 3000)
       }
     }
@@ -193,12 +188,12 @@ class Game {
 
   checkScoreLevel() {
     const score = this.score;
-    const loseConditionOne = this.loseConditionOne.bind(this);
+    const loseCondition = this.loseCondition.bind(this);
 
     if (score.scoreLevel < 1) {
       this.stopObjects();
       setTimeout( () => {
-        loseConditionOne();
+        loseCondition();
       }, 3000)
     }
   }
