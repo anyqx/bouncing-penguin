@@ -57,20 +57,20 @@ document.addEventListener("DOMContentLoaded",  () => {
     document.addEventListener("keydown", event => {
       if (event.code === "ArrowLeft") {
         moveLeft = true;
-        game. movePenguin(moveLeft, moveRight);
+        game.movePenguin(moveLeft, moveRight);
       } else if (event.code === "ArrowRight") {
         moveRight = true;
-        game. movePenguin(moveLeft, moveRight);
+        game.movePenguin(moveLeft, moveRight);
       }
     });
   
     document.addEventListener("keyup", event => {
       if (event.code === "ArrowLeft") {
         moveLeft = false;
-        game. movePenguin(moveLeft, moveRight);
+        game.movePenguin(moveLeft, moveRight);
       } else if (event.code === "ArrowRight") {
         moveRight = false;
-        game. movePenguin(moveLeft, moveRight);
+        game.movePenguin(moveLeft, moveRight);
       }
     });
   });

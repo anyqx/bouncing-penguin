@@ -163,7 +163,7 @@ class Game {
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
         if (score.scoreTop < 675) score.scoreTop += 5;
-        if (score.scoreLevel > 0) score.scoreLevel -= 5;
+        if (score.scoreLevel > 0) score.scoreLevel += 5;
       }
     }
   }
