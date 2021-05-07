@@ -22,8 +22,8 @@ const food4 = new Image();
 food4.src = "assets/images/foods/shrimp.png";
 const food5 = new Image();
 food5.src = "assets/images/foods/squid.png";
-const explosion = new Image();
-explosion.src = "assets/images/game_over/explosion.png";
+const bubbleBurst = new Image();
+bubbleBurst.src = "assets/images/game_over/bubble_burst.png";
 
 class Food {
   constructor(ctx, type, startPos) {
@@ -33,8 +33,8 @@ class Food {
     this.size = 5;
     this.angle = 0;
     this.hit = false;
-    this.explosion = explosion;
-    this.explosionSize = 50;
+    this.bubbleBurst = bubbleBurst;
+    this.bubbleSize = 50;
     if (this.type === "food1") this.food = food1;
     if (this.type === "food2") this.food = food2;
     if (this.type === "food3") this.food = food3;
@@ -52,7 +52,7 @@ class Food {
       this.ctx.save();
       this.ctx.translate(this.pos[0], this.pos[1]); // this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
 
-      this.ctx.drawImage(this.explosion, -(this.explosionSize / 2), -(this.explosionSize / 2), this.explosionSize, this.explosionSize);
+      this.ctx.drawImage(this.bubbleBurst, -(this.bubbleSize / 2), -(this.bubbleSize / 2), this.bubbleSize, this.bubbleSize);
       this.ctx.translate(-this.pos[0], -this.pos[1]);
       this.ctx.restore();
     } else {
@@ -76,7 +76,7 @@ class Food {
 
   move() {
     if (this.hit) {
-      this.explosionSize += 6;
+      this.bubbleSize += 6;
       this.pos[1] += 7;
 
       if (this.startPos === "pos1") {
@@ -441,8 +441,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const home = new Image();
 home.src = "assets/images/home/ice_cave.png";
-const explosion = new Image();
-explosion.src = "assets/images/home/ice_cave.png";
+const bubbleBurst = new Image();
+bubbleBurst.src = "assets/images/home/ice_cave.png";
 
 class Home {
   constructor(ctx, endPos) {
@@ -450,8 +450,8 @@ class Home {
     this.endPos = endPos;
     this.size = 5;
     this.hit = false;
-    this.explosion = explosion;
-    this.explosionSize = 30;
+    this.bubbleBurst = bubbleBurst;
+    this.bubbleSize = 30;
     this.home = home;
     if (this.endPos === "endPos1") this.pos = [690, 50];
     if (this.endPos === "endPos2") this.pos = [490, 50];
@@ -459,7 +459,7 @@ class Home {
 
   draw() {
     if (this.hit) {
-      this.ctx.drawImage(this.explosion, this.pos[0] + 50, this.pos[1] + 30, this.explosionSize, this.explosionSize);
+      this.ctx.drawImage(this.bubbleBurst, this.pos[0] + 50, this.pos[1] + 30, this.bubbleSize, this.bubbleSize);
     } else {
       this.ctx.drawImage(this.home, this.pos[0], this.pos[1], this.size, this.size);
     }
@@ -467,7 +467,7 @@ class Home {
 
   move() {
     if (this.hit) {
-      this.explosionSize += 10;
+      this.bubbleSize += 10;
       this.pos[0] -= 5;
       this.pos[1] -= 5;
     } else {
@@ -564,25 +564,24 @@ class Score {
     this.score = score;
     this.scoreTop = 25;
     this.scoreLevel = 650;
-  } // Orange
+  } // Orange // draw on Canvas
 
 
   draw() {
     this.score.beginPath(); //use bar to show
-    // this.score.rect(25, this.scoreTop, 25, this.scoreLevel); 
-    // this.score.strokeStyle = '#FCD390';
-    // this.score.lineWidth = 2;
-    // this.score.shadowColor = '#F08240';
-    // this.score.shadowBlur = 50;
-    // this.score.shadowOffsetX = 0;
-    // this.score.shadowOffsetY = 0;
-    // this.score.stroke();
-    // this.score.fill();
-    //use score to show
 
-    this.score.font = '25px Arial';
-    this.score.fillStyle = '#FBFED1';
-    this.score.fillText(this.scoreLevel, 8, 20);
+    this.score.rect(25, this.scoreTop, 25, this.scoreLevel);
+    this.score.strokeStyle = '#FCD390';
+    this.score.lineWidth = 2;
+    this.score.shadowColor = '#F08240';
+    this.score.shadowBlur = 10;
+    this.score.shadowOffsetX = 0;
+    this.score.shadowOffsetY = 0;
+    this.score.stroke();
+    this.score.fill(); //use score to show
+    // this.score.font = '25px Arial';
+
+    this.score.fillStyle = '#FBFED1'; // this.score.fillText(this.scoreLevel, 8,20)
   }
 
 }
@@ -605,8 +604,8 @@ const trash1 = new Image();
 trash1.src = "assets/images/trash/plastic_bag.png";
 const trash2 = new Image();
 trash2.src = "assets/images/trash/pop.png";
-const explosion = new Image();
-explosion.src = "assets/images/game_over/explosion.png";
+const bubbleBurst = new Image();
+bubbleBurst.src = "assets/images/game_over/bubble_burst.png";
 
 class Trash {
   constructor(ctx, type, startPos) {
@@ -615,8 +614,8 @@ class Trash {
     this.startPos = startPos;
     this.size = 5;
     this.hit = false;
-    this.explosion = explosion;
-    this.explosionSize = 20;
+    this.bubbleBurst = bubbleBurst;
+    this.bubbleSize = 20;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
     if (this.startPos === "pos1") this.pos = [200, 50];
@@ -627,7 +626,7 @@ class Trash {
 
   draw() {
     if (this.hit) {
-      this.ctx.drawImage(this.explosion, this.pos[0] + 10, this.pos[1] + 30, this.explosionSize, this.explosionSize);
+      this.ctx.drawImage(this.bubbleBurst, this.pos[0] + 10, this.pos[1] + 30, this.bubbleSize, this.bubbleSize);
     } else {
       const bubble = this.ctx.createRadialGradient(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 0.3, this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 1.0);
       bubble.addColorStop(0, "lightblue");
@@ -644,7 +643,7 @@ class Trash {
 
   move() {
     if (this.hit) {
-      this.explosionSize += 10;
+      this.bubbleSize += 10;
       this.pos[0] -= 5;
       this.pos[1] -= 5;
     } else {

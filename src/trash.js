@@ -3,8 +3,8 @@ trash1.src = "assets/images/trash/plastic_bag.png";
 const trash2 = new Image();
 trash2.src = "assets/images/trash/pop.png";
 
-const explosion = new Image();
-explosion.src = "assets/images/game_over/explosion.png";
+const bubbleBurst = new Image();
+bubbleBurst.src = "assets/images/game_over/bubble_burst.png";
 
 class Trash {
   constructor(ctx, type, startPos) {
@@ -13,8 +13,8 @@ class Trash {
     this.startPos = startPos;
     this.size = 5;
     this.hit = false;
-    this.explosion = explosion;
-    this.explosionSize = 20;
+    this.bubbleBurst = bubbleBurst;
+    this.bubbleSize = 20;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
 
@@ -32,11 +32,11 @@ class Trash {
   draw() {
     if (this.hit) {
       this.ctx.drawImage(
-        this.explosion,
+        this.bubbleBurst,
         this.pos[0] + 10, 
         this.pos[1] + 30,
-        this.explosionSize,
-        this.explosionSize
+        this.bubbleSize,
+        this.bubbleSize
       );
     } else {
       const bubble = this.ctx.createRadialGradient(
@@ -76,7 +76,7 @@ class Trash {
 
   move() {
     if (this.hit) {
-      this.explosionSize += 10;
+      this.bubbleSize += 10;
       this.pos[0] -= 5;
       this.pos[1] -= 5;
     } else {

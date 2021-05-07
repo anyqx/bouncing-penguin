@@ -10,8 +10,8 @@ const food5 = new Image();
 food5.src = "assets/images/foods/squid.png";
 
 
-const explosion = new Image();
-explosion.src = "assets/images/game_over/explosion.png";
+const bubbleBurst = new Image();
+bubbleBurst.src = "assets/images/game_over/bubble_burst.png";
 
 class Food {
   constructor(ctx, type, startPos) {
@@ -21,8 +21,8 @@ class Food {
     this.size = 5;
     this.angle = 0;
     this.hit = false;
-    this.explosion = explosion;
-    this.explosionSize = 50;
+    this.bubbleBurst = bubbleBurst;
+    this.bubbleSize = 50;
     if (this.type === "food1") this.food = food1;
     if (this.type === "food2") this.food = food2;
     if (this.type === "food3") this.food = food3;
@@ -46,11 +46,11 @@ class Food {
       this.ctx.translate(this.pos[0], this.pos[1]);
       // this.ctx.rotate(Math.PI / 180 * (this.angle += 1));
       this.ctx.drawImage(
-        this.explosion,
-        -(this.explosionSize / 2),
-        -(this.explosionSize / 2),
-        this.explosionSize,
-        this.explosionSize
+        this.bubbleBurst,
+        -(this.bubbleSize / 2),
+        -(this.bubbleSize / 2),
+        this.bubbleSize,
+        this.bubbleSize
       )
       this.ctx.translate(-this.pos[0], -this.pos[1]);
       this.ctx.restore();
@@ -99,7 +99,7 @@ class Food {
 
   move() {
     if (this.hit) {
-      this.explosionSize += 6;
+      this.bubbleSize += 6;
       this.pos[1] += 7;
 
       if (this.startPos === "pos1") {
