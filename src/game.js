@@ -28,7 +28,7 @@ class Game {
     this.win = win;
     this.lose = lose;
     this.score_x = 75;
-    this.score_y = 700;
+    this.score_y = 710;
   }
 
 
