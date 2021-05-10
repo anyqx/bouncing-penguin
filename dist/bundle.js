@@ -331,7 +331,7 @@ class Game {
       this.home.draw();
       this.penguin.draw();
     } else if (this.gameStatus === "lose") {
-      ctx.drawImage(this.lose, 252, 295.5);
+      ctx.drawImage(this.lose, 300,150,352, 495.5);
     } else if (this.gameStatus === "victory") {
       ctx.drawImage(this.win, 253.5, 321);
     }
