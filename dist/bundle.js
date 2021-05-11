@@ -132,8 +132,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const bgGame = new Image();
-bgGame.src = "assets/images/backgrounds/background.jpg";
+const background = new Image();
+background.src = "assets/images/backgrounds/background.jpg"; //not the canvas
+
 const win = new Image();
 win.src = "assets/images/text/win.png";
 const lose = new Image();
@@ -151,7 +152,7 @@ class Game {
     this.bg_color = "#000000";
     this.dim_x = 1200;
     this.dim_y = 700;
-    this.bgGame = bgGame;
+    this.background = background;
     this.gameStatus = "playing";
     this.win = win;
     this.lose = lose;
@@ -231,7 +232,7 @@ class Game {
   }
 
   winCondition() {
-    this.gameStatus = "victory";
+    this.gameStatus = "win";
   }
 
   checkTrashCollisions() {
@@ -317,7 +318,7 @@ class Game {
     ctx.clearRect(0, 0, this.dim_x, this.dim_y);
     ctx.fillStyle = this.bg_color;
     ctx.fillRect(0, 0, this.dim_x, this.dim_y);
-    ctx.drawImage(this.bgGame, 0, 0, this.dim_x, this.dim_y);
+    ctx.drawImage(this.background, 0, 0, this.dim_x, this.dim_y);
     score.clearRect(0, 0, this.score_x, this.score_y);
     score.fillStyle = this.bg_color;
     score.fillRect(0, 0, this.score_x, this.score_y);
@@ -331,9 +332,9 @@ class Game {
       this.home.draw();
       this.penguin.draw();
     } else if (this.gameStatus === "lose") {
-      ctx.drawImage(this.lose, 300,150,352, 495.5);
-    } else if (this.gameStatus === "victory") {
-      ctx.drawImage(this.win, 253.5, 321);
+      ctx.drawImage(this.lose, 200, 100, 700, 500);
+    } else if (this.gameStatus === "win") {
+      ctx.drawImage(this.win, 200, 100, 700, 500);
     }
   }
 
@@ -743,7 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
   scoreCanvas.width = 75;
   scoreCanvas.height = 700;
   const score = scoreCanvas.getContext("2d");
-  const bgMusic = new Audio("assets/audio/bg_music.mp3");
+  const bgMusic = new Audio("assets/audio/music.mp3");
   const directions = document.getElementById("directions-modal");
   const directionsBtn = document.getElementById("directions-btn");
   const close = document.getElementById("close-modal");

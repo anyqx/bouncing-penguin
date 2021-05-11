@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded",  () => {
   scoreCanvas.width = 75;
   scoreCanvas.height = 700;
   const score = scoreCanvas.getContext("2d");
-  const bgMusic = new Audio("assets/audio/bg_music.mp3")
+  const bgMusic = new Audio("assets/audio/music.mp3")
 
   const directions = document.getElementById("directions-modal");
   const directionsBtn = document.getElementById("directions-btn");

@@ -4,8 +4,8 @@ import Penguin from './penguin.js';
 import Home from './home';
 import Score from './score';
 
-const bgGame = new Image();
-bgGame.src = "assets/images/backgrounds/background.jpg";
+const background = new Image();
+background.src = "assets/images/backgrounds/background.jpg"; //not the canvas
 const win = new Image();
 win.src = "assets/images/text/win.png"
 const lose = new Image();
@@ -23,7 +23,7 @@ class Game {
     this.bg_color = "#000000";
     this.dim_x = 1200;
     this.dim_y = 700;
-    this.bgGame = bgGame;
+    this.background = background;
     this.gameStatus = "playing";
     this.win = win;
     this.lose = lose;
@@ -99,10 +99,9 @@ class Game {
 
     const addFood = this.addFood.bind(this);
     const removeFood = this.removeFood.bind(this);
+
     this.foodIntervalId = setInterval(() => { 
-
       addFood();
-
       setTimeout( () => {
         removeFood();
       }, 6000)
@@ -122,7 +121,7 @@ class Game {
 
 
   winCondition() {
-    this.gameStatus = "victory";
+    this.gameStatus = "win";
   }
 
   checkTrashCollisions() {
@@ -209,7 +208,7 @@ class Game {
     ctx.clearRect(0, 0, this.dim_x, this.dim_y);
     ctx.fillStyle = this.bg_color;
     ctx.fillRect(0, 0, this.dim_x, this.dim_y);
-    ctx.drawImage(this.bgGame, 0, 0, this.dim_x, this.dim_y);
+    ctx.drawImage(this.background, 0, 0, this.dim_x, this.dim_y);
     score.clearRect(0, 0, this.score_x, this.score_y);
     score.fillStyle = this.bg_color;
     score.fillRect(0, 0, this.score_x, this.score_y)
@@ -224,16 +223,9 @@ class Game {
       this.penguin.draw();
     } else if (this.gameStatus === "lose") {
       ctx.drawImage(
-        this.lose,
-        252,
-        295.5
-      )
-    } else if (this.gameStatus === "victory") {
-      ctx.drawImage(
-        this.win,
-        253.5,
-        321
-      )
+        this.lose, 200,100,700,500)
+    } else if (this.gameStatus === "win") {
+      ctx.drawImage( this.win, 200,100, 700, 500)
     }
   };
 
@@ -251,7 +243,6 @@ class Game {
         trash.move();
       }
     });
-
 
     this.checkScoreLevel();
     this.checkTrashCollisions();
