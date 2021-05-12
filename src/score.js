@@ -13,7 +13,7 @@ class Score {
     this.score.strokeStyle = '#FCD390';
     this.score.lineWidth = 2;
     this.score.shadowColor = '#F08240';
-    this.score.shadowBlur = 10;
+    this.score.shadowBlur = 50;
     this.score.shadowOffsetX = 0;
     this.score.shadowOffsetY = 0;
     this.score.stroke();
@@ -21,7 +21,7 @@ class Score {
 
     //use score to show
     // this.score.font = '25px Arial';
-    this.score.fillStyle = '#FBFED1';
+    // this.score.fillStyle = '#FBFED1';
     // this.score.fillText(this.scoreLevel, 8,20)
     
   }

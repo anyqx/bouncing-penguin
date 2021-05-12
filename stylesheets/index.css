@@ -27,16 +27,16 @@ body {
 }
 
 .header * button {
-  background-color:;
+  background-color:white;
   border-radius: 10px;
   margin-top: 20px;
   /* border: 2px solid grey; */
 }
 
 .header * a {
-  background-color: orange;
-  /* border-radius: 4px;
-  border: 2px solid grey; */
+  background-color:white;
+  border-radius: 10px;
+  border: 2px solid grey;
   
   text-align: center;
   margin: 0px 10px 0px;
