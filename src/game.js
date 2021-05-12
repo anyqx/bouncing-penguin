@@ -27,8 +27,8 @@ class Game {
     this.gameStatus = "playing";
     this.win = win;
     this.lose = lose;
-    this.score_x = 75;
-    this.score_y = 710;
+    this.score_x = 800;
+    this.score_y = 800;
   }
 
 
@@ -135,8 +135,8 @@ class Game {
 
       if (penguin.isCollidedWith(trash)) {
         trash.hit = true;
-        if (score.scoreTop > 0) {
-          score.scoreTop -= 5;
+        if (score.currentScore > 0) {
+          score.currentScore -= 5;
         } else {
           setTimeout( () => {
             loseCondition();
@@ -156,14 +156,13 @@ class Game {
 
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
-        if (score.scoreTop < 1000) {
-          score.scoreTop += 5;
+        if (score.currentScore < 1000) {
+          score.currentScore += 5;
         } else {
           setTimeout( () => {
             winCondition();
         }, 3000)
         }
-        // if (score.scoreLevel > 0) score.scoreLevel += 5;
       }
     }
   }
@@ -178,7 +177,7 @@ class Game {
 
     if (penguin.isCollidedWith(home)) {
       penguin.hit = true;
-      if (score.scoreTop > 0) {
+      if (score.currentScore > 0) {
         home.hit = true;
         setTimeout( () => {
           winCondition();
@@ -191,11 +190,11 @@ class Game {
     }
   }
 
-  checkScoreLevel() {
+  checkCurrentScore() {
     const score = this.score;
     const loseCondition = this.loseCondition.bind(this);
 
-    if (score.scoreTop < 0) {
+    if (score.currentScore < 0) {
       this.stopObjects();
       setTimeout( () => {
         loseCondition();
@@ -250,7 +249,7 @@ class Game {
       }
     });
 
-    this.checkScoreLevel();
+    this.checkCurrentScore();
     this.checkTrashCollisions();
     this.checkFoodCollisions();
 

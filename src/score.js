@@ -1,16 +1,15 @@
 class Score {
   constructor(score){
     this.score = score;
-    this.scoreTop = 0;
-    this.scoreLevel = 650;
+    this.currentScore = 0;
   }
 
-  // Orange // draw on Canvas
+  //draw on Canvas
   draw() {
     this.score.beginPath();
-    this.score.font = '25px Arial';
-    this.score.fillStyle = 'red';
-    this.score.fillText(this.scoreTop, 100,20)
+    this.score.font = '22px Itim cursive';
+    this.score.fillStyle = 'rgb(255,107,107)';
+    this.score.fillText("SCORE: "+this.currentScore, 50,20)
     
   }
 
