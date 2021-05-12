@@ -71,6 +71,7 @@ body {
   flex-direction: row;
 }
 
+
 #directions-modal {
   display: none;
   position: absolute;
@@ -189,6 +190,7 @@ body {
     font-size: 30px;
     margin-left: 3%;
   }
+
 
   #directions-modal {
     height: 73%;

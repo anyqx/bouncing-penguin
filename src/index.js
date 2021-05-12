@@ -3,14 +3,11 @@ import GameView from "./game_view.js";
 
 document.addEventListener("DOMContentLoaded",  () => {
   
-  const gameCanvas = document.getElementsByClassName("game-canvas")[0];
-  gameCanvas.width = 1200;
-  gameCanvas.height = 700;
+  // const scoreCanvas = document.getElementById("score-canvas");
+  // const score = scoreCanvas.getContext("2d");
+  const gameCanvas = document.getElementById("game-canvas");
   const ctx = gameCanvas.getContext("2d");
-  const scoreCanvas = document.getElementsByClassName("score-canvas")[0];
-  scoreCanvas.width = 75;
-  scoreCanvas.height = 700;
-  const score = scoreCanvas.getContext("2d");
+
   const music = new Audio("assets/audio/music.mp3")
 
   const directions = document.getElementById("directions-modal");

@@ -238,6 +238,7 @@ class Game {
   checkTrashCollisions() {
     const penguin = this.penguin;
     const trashs = this.trashs;
+    const score = this.score;
     const loseCondition = this.loseCondition.bind(this);
 
     for (let i = 0; i < trashs.length; i++) {
@@ -245,14 +246,22 @@ class Game {
 
       if (penguin.isCollidedWith(trash)) {
         trash.hit = true;
-        penguin.hit = true;
-        clearInterval(this.trashIntervalId);
-        clearInterval(this.foodIntervalId);
-        this.trashs = [trash];
-        this.foods = [];
-        setTimeout(() => {
-          loseCondition();
-        }, 3000);
+
+        if (score.scoreTop > 0) {
+          score.scoreTop -= 5;
+        } else {
+          setTimeout(() => {
+            loseCondition();
+          }, 1000);
+        } // penguin.hit = true;
+        // clearInterval(this.trashIntervalId);
+        // clearInterval(this.foodIntervalId);
+        // this.trashs = [trash];
+        // this.foods = [];
+        // setTimeout( () => {
+        //   loseCondition();
+        // }, 3000)
+
       }
     }
   }
@@ -267,8 +276,15 @@ class Game {
 
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
-        if (score.scoreTop < 675) score.scoreTop += 5;
-        if (score.scoreLevel > 0) score.scoreLevel += 5;
+
+        if (score.scoreTop < 1000) {
+          score.scoreTop += 5;
+        } else {
+          setTimeout(() => {
+            winCondition();
+          }, 3000);
+        } // if (score.scoreLevel > 0) score.scoreLevel += 5;
+
       }
     }
   }
@@ -283,7 +299,7 @@ class Game {
     if (penguin.isCollidedWith(home)) {
       penguin.hit = true;
 
-      if (score.scoreLevel > 0) {
+      if (score.scoreTop > 0) {
         home.hit = true;
         setTimeout(() => {
           winCondition();
@@ -300,7 +316,7 @@ class Game {
     const score = this.score;
     const loseCondition = this.loseCondition.bind(this);
 
-    if (score.scoreLevel < 1) {
+    if (score.scoreTop < 0) {
       this.stopObjects();
       setTimeout(() => {
         loseCondition();
@@ -563,26 +579,28 @@ __webpack_require__.r(__webpack_exports__);
 class Score {
   constructor(score) {
     this.score = score;
-    this.scoreTop = 25;
+    this.scoreTop = 0;
     this.scoreLevel = 650;
   } // Orange // draw on Canvas
 
 
   draw() {
     this.score.beginPath(); //use bar to show
+    // this.score.rect(25, this.scoreTop, 25, this.scoreLevel); 
+    // this.score.strokeStyle = '#FCD390';
+    // this.score.lineWidth = 2;
+    // this.score.shadowColor = '#F08240';
+    // this.score.shadowBlur = 50;
+    // this.score.shadowOffsetX = 0;
+    // this.score.shadowOffsetY = 0;
+    // this.score.stroke();
+    // this.score.fill();
+    //use score to show
 
-    this.score.rect(25, this.scoreTop, 25, this.scoreLevel);
-    this.score.strokeStyle = '#FCD390';
-    this.score.lineWidth = 2;
-    this.score.shadowColor = '#F08240';
-    this.score.shadowBlur = 50;
-    this.score.shadowOffsetX = 0;
-    this.score.shadowOffsetY = 0;
-    this.score.stroke();
-    this.score.fill(); //use score to show
-    // this.score.font = '25px Arial';
-    // this.score.fillStyle = '#FBFED1';
-    // this.score.fillText(this.scoreLevel, 8,20)
+    this.score.font = '25px Arial';
+    this.score.fillStyle = '#FBFED1'; // this.score.fillText(this.scoreLevel, 8,20)
+
+    this.score.fillText(this.scoreTop, 8, 20);
   }
 
 }
@@ -627,7 +645,7 @@ class Trash {
 
   draw() {
     if (this.hit) {
-      this.ctx.drawImage(this.bubbleBurst, this.pos[0] + 10, this.pos[1] + 30, this.bubbleSize, this.bubbleSize);
+      this.ctx.drawImage(this.bubbleBurst, this.pos[0] + 5, this.pos[1] + 5, this.bubbleSize, this.bubbleSize);
     } else {
       const bubble = this.ctx.createRadialGradient(this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 0.3, this.pos[0] + this.size / 2, this.pos[1] + this.size / 2, this.size * 1.0);
       bubble.addColorStop(0, "lightblue");
@@ -644,7 +662,7 @@ class Trash {
 
   move() {
     if (this.hit) {
-      this.bubbleSize += 10;
+      this.bubbleSize += 6;
       this.pos[0] -= 5;
       this.pos[1] -= 5;
     } else {
@@ -652,9 +670,9 @@ class Trash {
       this.pos[1] += 4.5;
 
       if (this.startPos === "pos1") {
-        this.pos[0] -= 1.7;
+        this.pos[0] -= 1.;
       } else if (this.startPos === "pos2") {
-        this.pos[0] -= 0.55;
+        this.pos[0] -= 0.3;
       } else if (this.startPos === "pos3") {
         this.pos[0] += 0.4;
       }
@@ -736,14 +754,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  const gameCanvas = document.getElementsByClassName("game-canvas")[0];
-  gameCanvas.width = 1200;
-  gameCanvas.height = 700;
+  // const scoreCanvas = document.getElementById("score-canvas");
+  // const score = scoreCanvas.getContext("2d");
+  const gameCanvas = document.getElementById("game-canvas");
   const ctx = gameCanvas.getContext("2d");
-  const scoreCanvas = document.getElementsByClassName("score-canvas")[0];
-  scoreCanvas.width = 75;
-  scoreCanvas.height = 700;
-  const score = scoreCanvas.getContext("2d");
   const music = new Audio("assets/audio/music.mp3");
   const directions = document.getElementById("directions-modal");
   const directionsBtn = document.getElementById("directions-btn");

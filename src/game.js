@@ -127,6 +127,7 @@ class Game {
   checkTrashCollisions() {
     const penguin = this.penguin;
     const trashs = this.trashs;
+    const score = this.score
     const loseCondition = this.loseCondition.bind(this);
 
     for (let i = 0; i < trashs.length; i++) {
@@ -134,14 +135,21 @@ class Game {
 
       if (penguin.isCollidedWith(trash)) {
         trash.hit = true;
-        penguin.hit = true;
-        clearInterval(this.trashIntervalId);
-        clearInterval(this.foodIntervalId);
-        this.trashs = [trash];
-        this.foods = [];
-        setTimeout( () => {
-          loseCondition();
-        }, 3000)
+        if (score.scoreTop > 0) {
+          score.scoreTop -= 5;
+        } else {
+          setTimeout( () => {
+            loseCondition();
+        }, 1000)
+        }
+        // penguin.hit = true;
+        // clearInterval(this.trashIntervalId);
+        // clearInterval(this.foodIntervalId);
+        // this.trashs = [trash];
+        // this.foods = [];
+        // setTimeout( () => {
+        //   loseCondition();
+        // }, 3000)
       }
     }
   }
@@ -156,8 +164,14 @@ class Game {
 
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
-        if (score.scoreTop < 675) score.scoreTop += 5;
-        if (score.scoreLevel > 0) score.scoreLevel += 5;
+        if (score.scoreTop < 1000) {
+          score.scoreTop += 5;
+        } else {
+          setTimeout( () => {
+            winCondition();
+        }, 3000)
+        }
+        // if (score.scoreLevel > 0) score.scoreLevel += 5;
       }
     }
   }
@@ -172,7 +186,7 @@ class Game {
 
     if (penguin.isCollidedWith(home)) {
       penguin.hit = true;
-      if (score.scoreLevel > 0) {
+      if (score.scoreTop > 0) {
         home.hit = true;
         setTimeout( () => {
           winCondition();
@@ -189,7 +203,7 @@ class Game {
     const score = this.score;
     const loseCondition = this.loseCondition.bind(this);
 
-    if (score.scoreLevel < 1) {
+    if (score.scoreTop < 0) {
       this.stopObjects();
       setTimeout( () => {
         loseCondition();

@@ -33,8 +33,8 @@ class Trash {
     if (this.hit) {
       this.ctx.drawImage(
         this.bubbleBurst,
-        this.pos[0] + 10, 
-        this.pos[1] + 30,
+        this.pos[0] + 5, 
+        this.pos[1] + 5,
         this.bubbleSize,
         this.bubbleSize
       );
@@ -76,7 +76,7 @@ class Trash {
 
   move() {
     if (this.hit) {
-      this.bubbleSize += 10;
+      this.bubbleSize += 6;
       this.pos[0] -= 5;
       this.pos[1] -= 5;
     } else {
@@ -84,9 +84,9 @@ class Trash {
       this.pos[1] += 4.5;
   
       if (this.startPos === "pos1") {
-        this.pos[0] -= 1.7;
+        this.pos[0] -= 1.
       } else if (this.startPos === "pos2") {
-        this.pos[0] -= 0.55;
+        this.pos[0] -= 0.3;
       } else if (this.startPos === "pos3") {
         this.pos[0] += 0.4;
       }
