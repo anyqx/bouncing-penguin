@@ -744,7 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
   scoreCanvas.width = 75;
   scoreCanvas.height = 700;
   const score = scoreCanvas.getContext("2d");
-  const bgMusic = new Audio("assets/audio/music.mp3");
+  const music = new Audio("assets/audio/music.mp3");
   const directions = document.getElementById("directions-modal");
   const directionsBtn = document.getElementById("directions-btn");
   const close = document.getElementById("close-modal");
@@ -760,11 +760,11 @@ document.addEventListener("DOMContentLoaded", () => {
     directions.style.display = "none";
   });
   document.getElementById("audio-btn").addEventListener("click", () => {
-    if (bgMusic.muted) {
-      bgMusic.muted = false;
+    if (music.muted) {
+      music.muted = false;
       mute.innerHTML = "&#x1f50a;";
     } else {
-      bgMusic.muted = true;
+      music.muted = true;
       mute.innerHTML = "&#x1f507;";
     }
   });
@@ -773,8 +773,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const endPos = endPositions[Math.floor(Math.random() * Math.floor(2))];
     const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__.default(ctx, score, endPos);
     new _game_view_js__WEBPACK_IMPORTED_MODULE_1__.default(game, ctx, score).start();
-    bgMusic.currentTime = 0;
-    bgMusic.play();
+    music.currentTime = 0;
+    music.play();
     let moveLeft = false;
     let moveRight = false;
     document.addEventListener("keydown", event => {
