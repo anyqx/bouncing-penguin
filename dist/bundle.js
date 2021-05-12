@@ -149,7 +149,7 @@ class Game {
     this.home = new _home__WEBPACK_IMPORTED_MODULE_3__.default(ctx, endPos);
     this.penguin = new _penguin_js__WEBPACK_IMPORTED_MODULE_2__.default(ctx);
     this.score = new _score__WEBPACK_IMPORTED_MODULE_4__.default(score);
-    this.bg_color = "#000000";
+    this.bg_color = "skyblue";
     this.dim_x = 1200;
     this.dim_y = 700;
     this.background = background;
@@ -253,15 +253,7 @@ class Game {
           setTimeout(() => {
             loseCondition();
           }, 1000);
-        } // penguin.hit = true;
-        // clearInterval(this.trashIntervalId);
-        // clearInterval(this.foodIntervalId);
-        // this.trashs = [trash];
-        // this.foods = [];
-        // setTimeout( () => {
-        //   loseCondition();
-        // }, 3000)
-
+        }
       }
     }
   }
@@ -585,21 +577,9 @@ class Score {
 
 
   draw() {
-    this.score.beginPath(); //use bar to show
-    // this.score.rect(25, this.scoreTop, 25, this.scoreLevel); 
-    // this.score.strokeStyle = '#FCD390';
-    // this.score.lineWidth = 2;
-    // this.score.shadowColor = '#F08240';
-    // this.score.shadowBlur = 50;
-    // this.score.shadowOffsetX = 0;
-    // this.score.shadowOffsetY = 0;
-    // this.score.stroke();
-    // this.score.fill();
-    //use score to show
-
+    this.score.beginPath();
     this.score.font = '25px Arial';
-    this.score.fillStyle = 'red'; // this.score.fillText(this.scoreLevel, 8,20)
-
+    this.score.fillStyle = 'red';
     this.score.fillText(this.scoreTop, 100, 20);
   }
 
@@ -787,8 +767,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const endPos = endPositions[Math.floor(Math.random() * Math.floor(2))];
     const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__.default(ctx, score, endPos);
     new _game_view_js__WEBPACK_IMPORTED_MODULE_1__.default(game, ctx, score).start();
-    music.currentTime = 0;
-    music.play();
+    music.currentTime = 0; // music.play();
+
     let moveLeft = false;
     let moveRight = false;
     document.addEventListener("keydown", event => {

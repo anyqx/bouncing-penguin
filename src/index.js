@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded",  () => {
     new GameView(game, ctx, score).start();
 
     music.currentTime = 0;
-    music.play();
+    // music.play();
 
     let moveLeft = false;
     let moveRight = false;

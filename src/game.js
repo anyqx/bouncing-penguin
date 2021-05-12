@@ -20,7 +20,7 @@ class Game {
     this.home = new Home(ctx, endPos);
     this.penguin = new Penguin(ctx);
     this.score = new Score(score);
-    this.bg_color = "#000000";
+    this.bg_color = "skyblue";
     this.dim_x = 1200;
     this.dim_y = 700;
     this.background = background;
@@ -140,16 +140,8 @@ class Game {
         } else {
           setTimeout( () => {
             loseCondition();
-        }, 1000)
+          }, 1000)
         }
-        // penguin.hit = true;
-        // clearInterval(this.trashIntervalId);
-        // clearInterval(this.foodIntervalId);
-        // this.trashs = [trash];
-        // this.foods = [];
-        // setTimeout( () => {
-        //   loseCondition();
-        // }, 3000)
       }
     }
   }
