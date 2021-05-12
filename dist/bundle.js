@@ -414,7 +414,7 @@ class GameView {
 
   checkMiss() {
     if (this.game.gameStatus === "ending") {
-      this.game.gameStatus = "loseOne";
+      this.game.gameStatus = "lose";
     }
   }
 
@@ -424,13 +424,13 @@ class GameView {
     const checkMiss = this.checkMiss.bind(this);
     setTimeout(() => {
       generateObjects();
-    }, 14 * 10);
+    }, 15 * 10);
     setTimeout(() => {
-      finalPhase(); //win
-    }, 10 * 1000);
+      finalPhase(); //win how long game lasts
+    }, 15 * 1000);
     setTimeout(() => {
       checkMiss();
-    }, 100 * 1000);
+    }, 10 * 10);
     requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -598,9 +598,9 @@ class Score {
     //use score to show
 
     this.score.font = '25px Arial';
-    this.score.fillStyle = '#FBFED1'; // this.score.fillText(this.scoreLevel, 8,20)
+    this.score.fillStyle = 'red'; // this.score.fillText(this.scoreLevel, 8,20)
 
-    this.score.fillText(this.scoreTop, 8, 20);
+    this.score.fillText(this.scoreTop, 100, 20);
   }
 
 }
@@ -754,8 +754,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const scoreCanvas = document.getElementById("score-canvas");
-  // const score = scoreCanvas.getContext("2d");
+  const scoreCanvas = document.getElementById("score-canvas");
+  const score = scoreCanvas.getContext("2d");
   const gameCanvas = document.getElementById("game-canvas");
   const ctx = gameCanvas.getContext("2d");
   const music = new Audio("assets/audio/music.mp3");

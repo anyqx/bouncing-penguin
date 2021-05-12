@@ -20,7 +20,7 @@ class GameView {
 
   checkMiss() {
     if (this.game.gameStatus === "ending") {
-      this.game.gameStatus = "loseOne";
+      this.game.gameStatus = "lose";
     }
   }
 
@@ -30,13 +30,13 @@ class GameView {
     const checkMiss = this.checkMiss.bind(this);
     setTimeout( () => {
       generateObjects();
-    }, 14 * 10);
+    }, 15 * 10);
     setTimeout( () => {
-      finalPhase(); //win
-    }, 10 * 1000);
+      finalPhase(); //win how long game lasts
+    }, 15 * 1000);
     setTimeout( () => {
       checkMiss();
-    }, 100 * 1000);
+    }, 10 * 10);
     requestAnimationFrame(this.animate.bind(this));
   };
   

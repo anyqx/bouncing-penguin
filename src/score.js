@@ -20,10 +20,11 @@ class Score {
     // this.score.fill();
 
     //use score to show
+
     this.score.font = '25px Arial';
-    this.score.fillStyle = '#FBFED1';
+    this.score.fillStyle = 'red';
     // this.score.fillText(this.scoreLevel, 8,20)
-    this.score.fillText(this.scoreTop, 8,20)
+    this.score.fillText(this.scoreTop, 100,20)
 
     
   }
