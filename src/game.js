@@ -193,12 +193,19 @@ class Game {
   checkCurrentScore() {
     const score = this.score;
     const loseCondition = this.loseCondition.bind(this);
+    const winCondition = this.winCondition.bind(this);
 
     if (score.currentScore < 0) {
       this.clearObjects();
       setTimeout( () => {
         loseCondition();
       }, 3000)
+    }
+    if (score.currentScore >= 2000) {
+      this.clearObjects();
+      setTimeout( () => {
+        winCondition();
+      }, 2000)
     }
   }
 
