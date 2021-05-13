@@ -59,7 +59,7 @@ class Game {
 
     const addTrash = this.addTrash.bind(this);
     const removeTrash = this.removeTrash.bind(this);
-    this.trashIntervalId = setInterval( () => {
+    this.trashInterval = setInterval( () => {
 
       addTrash();
 
@@ -100,7 +100,7 @@ class Game {
     const addFood = this.addFood.bind(this);
     const removeFood = this.removeFood.bind(this);
 
-    this.foodIntervalId = setInterval(() => { 
+    this.foodInterval = setInterval(() => { 
       addFood();
       setTimeout( () => {
         removeFood();
@@ -156,7 +156,7 @@ class Game {
 
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
-        if (score.currentScore < 1000) {
+        if (score.currentScore < 2000) {
           score.currentScore += 5;
         } else {
           setTimeout( () => {
@@ -195,7 +195,7 @@ class Game {
     const loseCondition = this.loseCondition.bind(this);
 
     if (score.currentScore < 0) {
-      this.stopObjects();
+      this.clearObjects();
       setTimeout( () => {
         loseCondition();
       }, 3000)
@@ -204,9 +204,9 @@ class Game {
 
   // Animation
 
-  stopObjects() {
-    clearInterval(this.trashIntervalId);
-    clearInterval(this.foodIntervalId);
+  clearObjects() {
+    clearInterval(this.trashInterval);
+    clearInterval(this.foodInterval);
   }
 
   draw(ctx, score) {

@@ -13,7 +13,7 @@ class GameView {
 
   finalPhase() {
     if (this.game.gameStatus === "playing") {
-      this.game.stopObjects();
+      this.game.clearObjects();
       this.game.gameStatus = "ending";
     }
   }

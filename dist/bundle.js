@@ -183,7 +183,7 @@ class Game {
   generateTrashs() {
     const addTrash = this.addTrash.bind(this);
     const removeTrash = this.removeTrash.bind(this);
-    this.trashIntervalId = setInterval(() => {
+    this.trashInterval = setInterval(() => {
       addTrash();
       setTimeout(() => {
         removeTrash();
@@ -213,7 +213,7 @@ class Game {
   generateFoods() {
     const addFood = this.addFood.bind(this);
     const removeFood = this.removeFood.bind(this);
-    this.foodIntervalId = setInterval(() => {
+    this.foodInterval = setInterval(() => {
       addFood();
       setTimeout(() => {
         removeFood();
@@ -269,7 +269,7 @@ class Game {
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
 
-        if (score.currentScore < 1000) {
+        if (score.currentScore < 2000) {
           score.currentScore += 5;
         } else {
           setTimeout(() => {
@@ -308,7 +308,7 @@ class Game {
     const loseCondition = this.loseCondition.bind(this);
 
     if (score.currentScore < 0) {
-      this.stopObjects();
+      this.clearObjects();
       setTimeout(() => {
         loseCondition();
       }, 3000);
@@ -316,9 +316,9 @@ class Game {
   } // Animation
 
 
-  stopObjects() {
-    clearInterval(this.trashIntervalId);
-    clearInterval(this.foodIntervalId);
+  clearObjects() {
+    clearInterval(this.trashInterval);
+    clearInterval(this.foodInterval);
   }
 
   draw(ctx, score) {
@@ -398,7 +398,7 @@ class GameView {
 
   finalPhase() {
     if (this.game.gameStatus === "playing") {
-      this.game.stopObjects();
+      this.game.clearObjects();
       this.game.gameStatus = "ending";
     }
   }
@@ -461,13 +461,13 @@ class Home {
     this.bubbleBurst = bubbleBurst;
     this.bubbleSize = 30;
     this.home = home;
-    if (this.endPos === "endPos1") this.pos = [690, 50];
-    if (this.endPos === "endPos2") this.pos = [490, 50];
+    if (this.endPos === "endPos1") this.pos = [360, 100];
+    if (this.endPos === "endPos2") this.pos = [360, 100];
   }
 
   draw() {
     if (this.hit) {
-      this.ctx.drawImage(this.bubbleBurst, this.pos[0] + 50, this.pos[1] + 30, this.bubbleSize, this.bubbleSize);
+      this.ctx.drawImage(this.bubbleBurst, this.pos[0] + 30, this.pos[1] + 40, this.bubbleSize, this.bubbleSize);
     } else {
       this.ctx.drawImage(this.home, this.pos[0], this.pos[1], this.size, this.size);
     }
@@ -476,12 +476,12 @@ class Home {
   move() {
     if (this.hit) {
       this.bubbleSize += 10;
-      this.pos[0] -= 5;
-      this.pos[1] -= 5;
+      this.pos[0] -= 10;
+      this.pos[1] -= 10;
     } else {
       this.size += 1.0;
       this.pos[1] += 2;
-      if (this.endPos === "endPos1") this.pos[0] += 0.3;
+      if (this.endPos === "endPos1") this.pos[0] += 1;
       if (this.endPos === "endPos2") this.pos[0] -= 1.2;
       this.centerPos = [this.pos[0] + this.size / 3, this.pos[1] + this.size / 3];
     }
@@ -765,8 +765,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const endPos = endPositions[Math.floor(Math.random() * Math.floor(2))];
     const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__.default(ctx, score, endPos);
     new _game_view_js__WEBPACK_IMPORTED_MODULE_1__.default(game, ctx, score).start();
-    music.currentTime = 0; // music.play();
-
+    music.currentTime = 0;
+    music.play();
     let moveLeft = false;
     let moveRight = false;
     document.addEventListener("keydown", event => {
