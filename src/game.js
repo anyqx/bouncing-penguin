@@ -156,7 +156,7 @@ class Game {
 
       if (penguin.isCollidedWith(food)) {
         food.hit = true;
-        if (score.currentScore < 2000) {
+        if (score.currentScore < 3000) {
           score.currentScore += 5;
         } else {
           setTimeout( () => {
@@ -201,7 +201,7 @@ class Game {
         loseCondition();
       }, 3000)
     }
-    if (score.currentScore >= 2000) {
+    if (score.currentScore >= 3000) {
       this.clearObjects();
       setTimeout( () => {
         winCondition();
