@@ -9,21 +9,21 @@ document.addEventListener("DOMContentLoaded",  () => {
   const ctx = gameCanvas.getContext("2d");
   const music = new Audio("assets/audio/music.mp3")
 
-  const directions = document.getElementById("directions-modal");
-  const directionsBtn = document.getElementById("directions-btn");
+  const instructions = document.getElementById("instructions-modal");
+  const instructionsBtn = document.getElementById("instructions-btn");
   const close = document.getElementById("close-modal");
   const mute = document.getElementById("mute-symbol");
 
-  directionsBtn.addEventListener("click", () => {
-    if (directions.style.display !== "block") {
-      directions.style.display = "block";
+  instructionsBtn.addEventListener("click", () => {
+    if (instructions.style.display !== "block") {
+      instructions.style.display = "block";
     } else {
-      directions.style.display = "none";
+      instructions.style.display = "none";
     }
   });
 
   close.addEventListener("click", () => {
-    directions.style.display = "none";
+    instructions.style.display = "none";
   });
 
   document.getElementById("audio-btn").addEventListener("click", () => {

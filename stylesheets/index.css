@@ -27,30 +27,31 @@ body {
 }
 
 .header * button {
-  background-color:white;
-  border-radius: 10px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color:#eefdfe;
   margin-top: 20px;
-  /* border: 2px solid grey; */
+}
+
+#play-btn {
+  background-color: white;
 }
 
 .header * a {
-  background-color:white;
-  border-radius: 10px;
-  border: 2px solid grey;
-  
   text-align: center;
   margin: 0px 10px 0px;
   padding: 2px;
+  border-radius:2px;
 }
 
 .header * button:hover {
-  box-shadow: 0px 0px 10px 10px rgb(89, 152, 235);
+  box-shadow: 0px 0px 5px 5px rgb(89, 152, 235);
   transform: scale(1.1);
   cursor: pointer;
 }
 
 .header * a:hover {
-  box-shadow: 0px 0px 10px 10px rgb(89, 152, 235);
+  box-shadow: 0px 0px 2px 2px rgb(89, 152, 235);
 
   transform: scale(1.1);
   cursor: pointer;
@@ -71,35 +72,32 @@ body {
   flex-direction: row;
 }
 
-
-#directions-modal {
+#instructions-modal {
   display: none;
   position: absolute;
-  width: 70%;
+  width: 50%;
 }
 
-.directions-page {
+.instructions-page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* border: 2px solid grey;
-  /* border-radius: 10px; */ 
   background-color: black;
 }
 
-.directions-page > h1 {
+.instructions-page > h1 {
   font-family: 'Itim', cursive;
   color: rgb(41, 187, 255);
 }
 
-.directions-page > h2 {
+.instructions-page > h2 {
   font-family: 'Itim', cursive;
   color: rgb(41, 187, 255);
   margin-bottom: 20px;
 }
 
-.directions-page > p {
+.instructions-page > p {
   font-family: 'Itim', cursive;
   color: rgb(66, 180, 175);
   line-height: 2;
@@ -109,8 +107,6 @@ body {
   font-family: 'Itim', cursive;
   color: rgb(41, 187, 255);
   font-size: 20px;
-  /* border: 2px solid grey;
-  border-radius: 4px; */
   background-color: black;
 }
 
@@ -134,7 +130,7 @@ body {
   }
 
   #audio-btn > img {
-    height: 30px;
+    height: 50px;
   }
 
   #mute-symbol {
@@ -142,21 +138,21 @@ body {
     margin-left: 2%;
   }
 
-  #directions-modal {
-    height: 65%;
+  #instructions-modal {
+    height: 50%;
   }
 
-  .directions-page {
+  .instructions-page {
     height: 75%;
     padding: 70px;
   }
 
-  .directions-page > h1 {
+  .instructions-page > h1 {
     font-size: 80px;
     margin-bottom: 50px;
   }
 
-  .directions-page > h2 {
+  .instructions-page > h2 {
     font-size: 60px;
   }
 
@@ -171,7 +167,7 @@ body {
   }
 
   .links * img {
-    height: 30px;
+    height: 35px;
   }
 
   .header * a {
@@ -183,7 +179,7 @@ body {
   }
 
   #audio-btn > img {
-    height: 25px;
+    height: 40px;
   }
 
   #mute-symbol {
@@ -192,21 +188,21 @@ body {
   }
 
 
-  #directions-modal {
+  #instructions-modal {
     height: 73%;
   }
 
-  .directions-page {
+  .instructions-page {
     height: 90%;
     padding: 50px;
   }
 
-  .directions-page > h1 {
+  .instructions-page > h1 {
     font-size: 60px;
     margin-bottom: 30px;
   }
 
-  .directions-page > h2 {
+  .instructions-page > h2 {
     font-size: 50px;
     margin-top: 20px;
   }
