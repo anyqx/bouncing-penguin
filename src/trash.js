@@ -2,6 +2,8 @@ const trash1 = new Image();
 trash1.src = "assets/images/trash/plastic_bag.png";
 const trash2 = new Image();
 trash2.src = "assets/images/trash/pop.png";
+const trash3 = new Image();
+trash3.src = "assets/images/trash/bottle.png";
 
 const bubbleBurst = new Image();
 bubbleBurst.src = "assets/images/game_over/bubble_burst.png";
@@ -17,11 +19,12 @@ class Trash {
     this.bubbleSize = 20;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
-
+    if (this.type === "trash3") this.trash = trash3;
 
     if (this.startPos === "pos1") this.pos = [200, 50];
     if (this.startPos === "pos2") this.pos = [400, 50];
     if (this.startPos === "pos3") this.pos = [800, 50];
+
 
     this.centerPos = [
       (this.pos[0] + (this.size / 2)), 

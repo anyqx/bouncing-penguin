@@ -37,10 +37,11 @@ class Game {
   addTrash() {
     const trashs = [
       "trash1", 
-      "trash2"
+      "trash2",
+      "trash3"
     ];
     const positions = ["pos1", "pos2", "pos3"];
-    const trash = trashs[Math.floor(Math.random() * Math.floor(2))] //random trash coming out
+    const trash = trashs[Math.floor(Math.random() * Math.floor(3))] //random trash coming out
     const pos = positions[Math.floor(Math.random() * Math.floor(3))];
     this.trashs.push(new Trash(this.ctx, trash, pos));
   }
@@ -66,7 +67,7 @@ class Game {
       setTimeout( () => {
         removeTrash();
       }, 15 * 1000)
-    }, 800);
+    }, 500);
   };
 
   // Foods
@@ -105,7 +106,7 @@ class Game {
       setTimeout( () => {
         removeFood();
       }, 6000)
-    }, 250);
+    }, 230);
   };
 
   // Penguin

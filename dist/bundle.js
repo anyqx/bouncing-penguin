@@ -162,9 +162,9 @@ class Game {
 
 
   addTrash() {
-    const trashs = ["trash1", "trash2"];
+    const trashs = ["trash1", "trash2", "trash3"];
     const positions = ["pos1", "pos2", "pos3"];
-    const trash = trashs[Math.floor(Math.random() * Math.floor(2))]; //random trash coming out
+    const trash = trashs[Math.floor(Math.random() * Math.floor(3))]; //random trash coming out
 
     const pos = positions[Math.floor(Math.random() * Math.floor(3))];
     this.trashs.push(new _trash_js__WEBPACK_IMPORTED_MODULE_0__.default(this.ctx, trash, pos));
@@ -188,7 +188,7 @@ class Game {
       setTimeout(() => {
         removeTrash();
       }, 15 * 1000);
-    }, 800);
+    }, 500);
   }
 
   // Foods
@@ -218,7 +218,7 @@ class Game {
       setTimeout(() => {
         removeFood();
       }, 6000);
-    }, 250);
+    }, 230);
   }
 
   // Penguin
@@ -609,6 +609,8 @@ const trash1 = new Image();
 trash1.src = "assets/images/trash/plastic_bag.png";
 const trash2 = new Image();
 trash2.src = "assets/images/trash/pop.png";
+const trash3 = new Image();
+trash3.src = "assets/images/trash/bottle.png";
 const bubbleBurst = new Image();
 bubbleBurst.src = "assets/images/game_over/bubble_burst.png";
 
@@ -623,6 +625,7 @@ class Trash {
     this.bubbleSize = 20;
     if (this.type === "trash1") this.trash = trash1;
     if (this.type === "trash2") this.trash = trash2;
+    if (this.type === "trash3") this.trash = trash3;
     if (this.startPos === "pos1") this.pos = [200, 50];
     if (this.startPos === "pos2") this.pos = [400, 50];
     if (this.startPos === "pos3") this.pos = [800, 50];
