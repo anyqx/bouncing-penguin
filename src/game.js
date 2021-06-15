@@ -238,7 +238,7 @@ class Game {
       ctx.drawImage(
         this.lose, 200,100,700,500)
     } else if (this.gameStatus === "win") {
-      ctx.drawImage( this.win, 200,100, 700, 500)
+      ctx.drawImage( this.win, 200,100, 700, 510)
     }
   };
 
