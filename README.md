@@ -13,4 +13,4 @@ Save the penguin by eating food and avoiding trash!
 * Hitting trash will deduct points and create a bubble effect
 * Music on and off
 
-## code 
+## Code 
