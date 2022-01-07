@@ -6,8 +6,8 @@ class Penguin {
     this.ctx = ctx;
     this.pos = [550, 540];
     this.penguin = penguin;
-    this.dim_x = 100; //penguin-size
-    this.dim_y = 100;
+    this.dim_x = 105; //penguin-size
+    this.dim_y = 105;
     this.speed = 5;
     this.moveLeft = false;
     this.moveRight = false;
