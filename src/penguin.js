@@ -31,7 +31,7 @@ class Penguin {
   }
 
   move() {
-    if (this.moveLeft && this.pos[0] > -35) {
+    if (this.moveLeft && this.pos[0] > -34) {
       this.pos[0] -= this.speed;
       this.centerPos[0] -= this.speed;
       this.cbPos[0] -= this.speed;
