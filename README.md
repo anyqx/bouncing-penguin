@@ -1,6 +1,7 @@
 # [Bouncing Penguin](https://anyqx.github.io/bouncing-penguin/)
 
 ## Description
+A javascipt game designed on HTML canvas.
 Save the penguin by eating food and avoiding trash!
 ![Project-pic](/assets/images/project_pic.png)
 
